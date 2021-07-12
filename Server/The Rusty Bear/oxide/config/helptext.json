@@ -1,0 +1,20 @@
+{
+  "CustomHelpText": [
+    "custom helptext",
+    "custom helptext"
+  ],
+  "Pages": {
+    "default": {
+      "*": [
+        "custom helptext",
+        "custom helptext"
+      ]
+    }
+  },
+  "Settings": {
+    "AllowHelpTextFromOtherPlugins": true,
+    "BreakAfter": 10,
+    "UseCustomHelpText": false
+  },
+  "VERSION": "2.0.5"
+}

@@ -1,0 +1,12 @@
+{
+  "Show grid location": true,
+  "Track a corpse's location for x seconds": 30,
+  "Allow teleporting to own corpse x times per day (0 for unlimited)": 5,
+  "Allow teleporting to own corpse x times per day (0 for unlimited), for VIPs": 10,
+  "Allow returning to original location after teleporting": false,
+  "Countdown until teleporting to own corpse (0 for instant tp)": 5.0,
+  "Block teleports into Zone Manager's tp blocked zones": true,
+  "Block teleports from Zone Manager's tp blocked zones": true,
+  "Block teleports into building blocked areas": false,
+  "Reset players' remaining teleports at this time (HH:mm:ss format)": "00:00:00"
+}

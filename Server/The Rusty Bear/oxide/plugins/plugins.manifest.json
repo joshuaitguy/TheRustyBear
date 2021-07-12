@@ -1,0 +1,336 @@
+{
+    "$schema": "http://json.schema.cloud.utmonline.net/2021/07/RustPluginManifest.json",
+    "PluginMetadata": [ 
+        {
+            "Name": "Death Notes",
+            "Page": "https://www.umod.org/plugins/death-notes",
+            "DownloadUrl": "https://www.umod.org/plugins/DeathNotes.cs"
+        },
+        {
+            "Name": "Better Chat",
+            "Page": "https://www.umod.org/plugins/better-chat",
+            "DownloadUrl": "https://www.umod.org/plugins/BetterChat.cs"
+        },
+        {
+            "Name": "Image Library",
+            "Page": "https://www.umod.org/plugins/image-library",
+            "DownloadUrl": "https://www.umod.org/plugins/ImageLibrary.cs"
+        },
+        {
+            "Name": "Clans",
+            "Page": "https://www.umod.org/plugins/clans",
+            "DownloadUrl": "https://www.umod.org/plugins/Clans.cs"
+        },
+        {
+            "Name": "Crafting Controller",
+            "Page": "https://www.umod.org/plugins/crafting-controller",
+            "DownloadUrl": "https://www.umod.org/plugins/CraftingController.cs"
+        },
+        {
+            "Name": "Monument Radiation",
+            "Page": "https://www.umod.org/plugins/monument-radiation",
+            "DownloadUrl": "https://www.umod.org/plugins/MonumentRadiation.cs"
+        },
+        {
+            "Name": "Prefab Sniffer",
+            "Page": "https://www.umod.org/plugins/prefab-sniffer",
+            "DownloadUrl": "https://www.umod.org/plugins/PrefabSniffer.cs"
+        },
+        {
+            "Name": "Remover Tool",
+            "Page": "https://www.umod.org/plugins/remover-tool",
+            "DownloadUrl": "https://www.umod.org/plugins/RemoverTool.cs"
+        },
+        {
+            "Name": "Zone Manager",
+            "Page": "https://www.umod.org/plugins/zone-manager",
+            "DownloadUrl": "https://www.umod.org/plugins/ZoneManager.cs"
+        },
+        {
+            "Name": "Vanish",
+            "Page": "https://www.umod.org/plugins/vanish",
+            "DownloadUrl": "https://www.umod.org/plugins/Vanish.cs"
+        },
+        {
+            "Name": "Better Loot",
+            "Page": "https://www.umod.org/plugins/better-loot",
+            "DownloadUrl": "https://www.umod.org/plugins/BetterLoot.cs"
+        },
+        {
+            "Name": "Item Skin Randomizer",
+            "Page": "https://www.umod.org/plugins/item-skin-randomizer",
+            "DownloadUrl": "https://www.umod.org/plugins/ItemSkinRandomizer.cs"
+        },
+        {
+            "Name": "Loot Bouncer",
+            "Page": "https://www.umod.org/plugins/loot-bouncer",
+            "DownloadUrl": "https://www.umod.org/plugins/LootBouncer.cs"
+        },
+        {
+            "Name": "Magic Panel",
+            "Page": "https://www.umod.org/plugins/magic-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicPanel.cs"
+        },
+        {
+            "Name": "Magic Bradley Panel",
+            "Page": "https://www.umod.org/plugins/magic-bradley-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicBradleyPanel.cs"
+        },
+        {
+            "Name": "Magic CH47 Panel",
+            "Page": "https://www.umod.org/plugins/magic-ch47-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicCh47Panel.cs"
+        },
+        {
+            "Name": "Magic Ping Panel",
+            "Page": "https://www.umod.org/plugins/magic-ping-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicPingPanel.cs"
+        },
+        {
+            "Name": "Magic Rain of Fire Panel",
+            "Page": "https://www.umod.org/plugins/magic-rain-of-fire-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicRainOfFirePanel.cs"
+        },
+        {
+            "Name": "Rain of Fire",
+            "Page": "https://www.umod.org/plugins/rain-of-fire",
+            "DownloadUrl": "https://www.umod.org/plugins/RainOfFire.cs"
+        },
+        {
+            "Name": "Magic Cargo Ship Panel",
+            "Page": "https://www.umod.org/plugins/magic-cargo-ship-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicCargoShipPanel.cs"
+        },
+        {
+            "Name": "Magic Hostile Panel",
+            "Page": "https://www.umod.org/plugins/magic-hostile-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicHostilePanel.cs"
+        },
+        {
+            "Name": "Magic Airdrop Panel",
+            "Page": "https://www.umod.org/plugins/magic-airdrop-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicAirdropPanel.cs"
+        },
+        {
+            "Name": "Magic Clock Panel",
+            "Page": "https://www.umod.org/plugins/magic-clock-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicClockPanel.cs"
+        },
+        {
+            "Name": "Magic Coordinates Panel",
+            "Page": "https://www.umod.org/plugins/magic-coordinates-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicCoordinatesPanel.cs"
+        },
+        {
+            "Name": "Magic Death Notes Panel",
+            "Page": "https://www.umod.org/plugins/magic-death-notes-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicDeathNotesPanel.cs"
+        },
+        {
+            "Name": "Magic Gather Panel",
+            "Page": "https://www.umod.org/plugins/magic-gather-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicGatherPanel.cs"
+        },
+        {
+            "Name": "Magic Radiation Panel",
+            "Page": "https://www.umod.org/plugins/magic-radiation-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicRadiationPanel.cs"
+        },
+        {
+            "Name": "Magic Radiation Info Panel",
+            "Page": "https://www.umod.org/plugins/magic-radiation-info-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicRadiationInfoPanel.cs"
+        },
+        {
+            "Name": "Magic Sleepers Panel",
+            "Page": "https://www.umod.org/plugins/magic-sleepers-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicSleepersPanel.cs"
+        },
+        {
+            "Name": "No Give Gametip",
+            "Page": "https://www.umod.org/plugins/no-give-gametip",
+            "DownloadUrl": "https://www.umod.org/plugins/NoGiveGametip.cs"
+        },
+        {
+            "Name": "Recycle Blueprints",
+            "Page": "https://www.umod.org/plugins/recycle-blueprints",
+            "DownloadUrl": "https://www.umod.org/plugins/RecycleBlueprints.cs"
+        },
+        {
+            "Name": "Recycle",
+            "Page": "https://www.umod.org/plugins/recycle",
+            "DownloadUrl": "https://www.umod.org/plugins/Recycle.cs"
+        },
+        {
+            "Name": "Furnace Splitter",
+            "Page": "https://www.umod.org/plugins/furnace-splitter",
+            "DownloadUrl": "https://www.umod.org/plugins/FurnaceSplitter.cs"
+        },
+        {
+            "Name": "Quick Smelt",
+            "Page": "https://www.umod.org/plugins/quick-smelt",
+            "DownloadUrl": "https://www.umod.org/plugins/QuickSmelt.cs"
+        },
+        {
+            "Name": "Auto Fuel",
+            "Page": "https://www.umod.org/plugins/auto-fuel",
+            "DownloadUrl": "https://www.umod.org/plugins/AutoFuel.cs"
+        },
+        {
+            "Name": "Magic Heli Panel",
+            "Page": "https://www.umod.org/plugins/magic-heli-panel",
+            "DownloadUrl": "https://www.umod.org/plugins/MagicHeliPanel.cs"
+        },
+        {
+            "Name": "Event Randomizer",
+            "Page": "https://www.umod.org/plugins/event-randomizer",
+            "DownloadUrl": "https://www.umod.org/plugins/EventRandomizer.cs"
+        },
+        {
+            "Name": "Night Lantern",
+            "Page": "https://www.umod.org/plugins/night-lantern",
+            "DownloadUrl": "https://www.umod.org/plugins/NightLantern.cs"
+        },
+        {
+            "Name": "Welcomer",
+            "Page": "https://www.umod.org/plugins/welcomer",
+            "DownloadUrl": "https://www.umod.org/plugins/Welcomer.cs"
+        },
+        {
+            "Name": "Security Lights",
+            "Page": "https://www.umod.org/plugins/security-lights",
+            "DownloadUrl": "https://www.umod.org/plugins/SecurityLights.cs"
+        },
+        {
+            "Name": "JPipes",
+            "Page": "https://www.umod.org/plugins/jpipes",
+            "DownloadUrl": "https://www.umod.org/plugins/JPipes.cs",
+            "Enabled": false
+        },
+        {
+            "Name": "Godmode Indicator",
+            "Page": "https://www.umod.org/plugins/godmode-indicator",
+            "DownloadUrl": "https://www.umod.org/plugins/GodmodeIndicator.cs"
+        },
+        {
+            "Name": "Rock Block",
+            "Page": "https://www.umod.org/plugins/rock-block",
+            "DownloadUrl": "https://www.umod.org/plugins/RockBlock.cs"
+        },
+        {
+            "Name": "Safe Traps",
+            "Page": "https://www.umod.org/plugins/safe-traps",
+            "DownloadUrl": "https://www.umod.org/plugins/SafeTraps.cs"
+        },
+        {
+            "Name": "Lusty Map",
+            "Page": "https://www.umod.org/plugins/lusty-map",
+            "DownloadUrl": "https://www.umod.org/plugins/LustyMap.cs"
+        },
+        {
+            "Name": "Enhanced Hammer",
+            "Page": "https://www.umod.org/plugins/enhanced-hammer",
+            "DownloadUrl": "https://www.umod.org/plugins/EnhancedHammer.cs"
+        },
+        {
+            "Name": "Zone Domes",
+            "Page": "https://www.umod.org/plugins/zone-domes",
+            "DownloadUrl": "https://www.umod.org/plugins/ZoneDomes.cs"
+        },
+        {
+            "Name": "Zone Manager Auto Zones",
+            "Page": "https://www.umod.org/plugins/zone-manager-auto-zones",
+            "DownloadUrl": "https://www.umod.org/plugins/ZoneManagerAutoZones.cs"
+        },
+        {
+            "Name": "Realistic Weather",
+            "Page": "https://www.umod.org/plugins/realistic-weather",
+            "DownloadUrl": "https://www.umod.org/plugins/RealisticWeather.cs"
+        },
+        {
+            "Name": "Keep Active Item",
+            "Page": "https://www.umod.org/plugins/keep-active-item",
+            "DownloadUrl": "https://www.umod.org/plugins/KeepActiveItem.cs"
+        },
+        {
+            "Name": "Entity Owner",
+            "Page": "https://www.umod.org/plugins/entity-owner",
+            "DownloadUrl": "https://www.umod.org/plugins/EntityOwner.cs"
+        },
+        {
+            "Name": "Sync Pipes",
+            "Page": "https://www.umod.org/plugins/sync-pipes",
+            "DownloadUrl": "https://www.umod.org/plugins/SyncPipes.cs"
+        },
+        {
+            "Name": "Timed Execute",
+            "Page": "https://www.umod.org/plugins/timed-execute",
+            "DownloadUrl": "https://www.umod.org/plugins/TimedExecute.cs"
+        },
+        {
+            "Name": "Backpacks",
+            "Page": "https://www.umod.org/plugins/backpacks",
+            "DownloadUrl": "https://www.umod.org/plugins/Backpacks.cs"
+        },
+        {
+            "Name": "Corpse Location",
+            "Page": "https://www.umod.org/plugins/corpse-location",
+            "DownloadUrl": "https://www.umod.org/plugins/CorpseLocation.cs"
+        },
+        {
+            "Name": "Pets",
+            "Page": "https://www.umod.org/plugins/pets",
+            "DownloadUrl": "https://www.umod.org/plugins/Pets.cs"
+        },
+        {
+            "Name": "Don't Target Me",
+            "Page": "https://www.umod.org/plugins/dont-target-me",
+            "DownloadUrl": "https://www.umod.org/plugins/DontTargetMe.cs"
+        },
+        {
+            "Name": "Copy Paste",
+            "Page": "https://www.umod.org/plugins/copy-paste",
+            "DownloadUrl": "https://www.umod.org/plugins/CopyPaste.cs"
+        },
+        {
+            "Name": "Raidable Bases",
+            "Page": "https://www.umod.org/plugins/raidable-bases",
+            "DownloadUrl": "https://www.umod.org/plugins/RaidableBases.cs"
+        },
+        {
+            "Name": "Player Location",
+            "Page": "https://www.umod.org/plugins/player-location",
+            "DownloadUrl": "https://www.umod.org/plugins/PlayerLocation.cs"
+        },
+        {
+            "Name": "Admin Map",
+            "Page": "https://www.umod.org/plugins/admin-map",
+            "DownloadUrl": "https://www.umod.org/plugins/AdminMap.cs"
+        },
+        {
+            "Name": "Skins",
+            "Page": "https://www.umod.org/plugins/skins",
+            "DownloadUrl": "https://www.umod.org/plugins/Skins.cs"
+        },
+        {
+            "Name": "No Give Notices",
+            "Page": "https://www.umod.org/plugins/no-give-notices",
+            "DownloadUrl": "https://www.umod.org/plugins/NoGiveNotices.cs"
+        },
+        {
+            "Name": "Super Card",
+            "Page": "https://www.umod.org/plugins/super-card",
+            "DownloadUrl": "https://www.umod.org/plugins/SuperCard.cs"
+        },
+        {
+            "Name": "Clothed Murderers",
+            "Page": "https://www.umod.org/plugins/clothed-murderers",
+            "DownloadUrl": "https://www.umod.org/plugins/ClothedMurderers.cs"
+        },
+        {
+            "Name": "ZLevels Remastered",
+            "Page": "https://www.umod.org/plugins/zlevels-remastered",
+            "DownloadUrl": "https://www.umod.org/plugins/ZLevelsRemastered.cs"
+        }
+     ]
+}

@@ -1,0 +1,10 @@
+{
+  "Options": {
+    "Duration": 900.0
+  },
+  "Settings": {
+    "ChatPrefix": "Info",
+    "ChatPrefixColor": "red",
+    "ChatPrefixEnabled": true
+  }
+}

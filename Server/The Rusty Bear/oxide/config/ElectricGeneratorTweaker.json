@@ -1,0 +1,13 @@
+{
+  "Electric Generator": {
+    "Setting for all World": true
+  },
+  "Electric Generator Attributes": {
+    "Amount of electricity (100 by default)": 400.0
+  },
+  "Version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "Disable when player disconnected": true,
+  "Enable when player connected": false,
+  "Chat Settings": {
+    "Chat Command": "dtm",
+    "Chat Prefix": "<color=#00FFFF>[DontTargetMe]</color>: ",
+    "Chat SteamID Icon": 0
+  },
+  "Version": {
+    "Major": 1,
+    "Minor": 1,
+    "Patch": 2
+  }
+}
