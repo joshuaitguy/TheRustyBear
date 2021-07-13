@@ -25,7 +25,7 @@ $DataDirPath = Join-Path -Path $ServerPath -ChildPath "oxide/data"
 
 $Files = Get-ChildItem -Path $DataDirPath | ?{$protectedFiles -notcontains $_.Name}
 
-$Files | Remove-Item -Force -Verbose
+$Files | Remove-Item
 
 if($FullClean)
 {
