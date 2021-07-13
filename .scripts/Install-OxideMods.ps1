@@ -25,4 +25,6 @@ foreach($plugin in $manifest.PluginMetadata)
         $fileName = Split-Path -Path $plugin.DownloadUrl -Leaf
         Invoke-WebRequest -Uri $plugin.DownloadUrl -OutFile (Join-Path -Path $PluginsPath -ChildPath $fileName)
     }
+
+    Start-Sleep -Seconds 10
 }
