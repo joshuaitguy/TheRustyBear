@@ -29,5 +29,6 @@ $Files | Remove-Item -Force -Recurse
 
 if($FullClean)
 {
+    Get-ChildItem -Path "$ServerPath\oxide" -Directory | ?{$_.Name -ne "data"} | Remove-Item -Force -Recurse
     Get-ChildItem -Path $ServerPath -File | Remove-Item -Force -Recurse
 }
