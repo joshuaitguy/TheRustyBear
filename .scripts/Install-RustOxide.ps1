@@ -1,6 +1,4 @@
 param (
-    [string]$ServerManifestPath,
-    [string]$PluginsPath = "G:\Rust\Server\The Rusty Bear\oxide\plugins",
     [string]$ServerBasePath = "G:\Rust"
 )
 
