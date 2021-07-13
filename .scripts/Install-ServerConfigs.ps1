@@ -3,4 +3,4 @@ param(
     [string]$ServerRepoPath
 )
 
-Copy-Item -Path "$ServerRepoPath\*" -Destination $ServerPath -Force -Confirm:$false
+Copy-Item -Path "$ServerRepoPath\*" -Destination $ServerPath -Force -Recurse -Verbose
