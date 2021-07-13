@@ -9,8 +9,14 @@ $ServerManifestPath = Join-Path -Path $PluginsPath -ChildPath "plugins.manifest.
 
 $manifest = Get-Content -Path $ServerManifestPath | ConvertFrom-Json
 
+$pCount = 1
+$pTotal = $manifest.PluginMetadata | Measure-Object | Select-Object -ExpandProperty count
+
 foreach($plugin in $manifest.PluginMetadata)
 {
+    "Processing mod #$($pCount) out of $pTotal"
+    $pCount++ | Out-Null
+
     if($null -eq $plugin.Enabled)
     {
         $shouldProcess = $true
@@ -24,7 +30,6 @@ foreach($plugin in $manifest.PluginMetadata)
     {
         $fileName = Split-Path -Path $plugin.DownloadUrl -Leaf
         Invoke-WebRequest -Uri $plugin.DownloadUrl -OutFile (Join-Path -Path $PluginsPath -ChildPath $fileName)
+        Start-Sleep -Seconds 10
     }
-
-    Start-Sleep -Seconds 10
 }

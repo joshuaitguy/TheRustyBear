@@ -23,9 +23,12 @@ if(-not $FullClean)
 
 $DataDirPath = Join-Path -Path $ServerPath -ChildPath "oxide/data"
 
-$Files = Get-ChildItem -Path $DataDirPath | ?{$protectedFiles -notcontains $_.Name}
+if((Test-Path -Path $DataDirPath) -eq $true)
+{
+    $Files = Get-ChildItem -Path $DataDirPath | ?{$protectedFiles -notcontains $_.Name}
 
-$Files | Remove-Item -Force -Recurse
+    $Files | Remove-Item -Force -Recurse
+}
 
 if($FullClean)
 {
