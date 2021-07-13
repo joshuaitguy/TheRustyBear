@@ -2,6 +2,8 @@ param(
     [string]$ServerPath
 )
 
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+
 $PluginsPath = Join-Path -Path $ServerPath -ChildPath "oxide/plugins"
 $ServerManifestPath = Join-Path -Path $PluginsPath -ChildPath "plugins.manifest.json"
 
