@@ -1,7 +1,6 @@
 param(
     [string]$ServerPath,
-    [bool]$FullClean = $false,
-    [bool]$MapWipe = $false
+    [bool]$FullClean = $false
 )
 
 $protectedFiles = @(
@@ -28,7 +27,7 @@ $Files = Get-ChildItem -Path $DataDirPath | ?{$protectedFiles -notcontains $_.Na
 
 $Files | Remove-Item -Force -Confirm:$false -Verbose
 
-if($MapWipe)
+if($FullClean)
 {
     Get-ChildItem -Path $ServerPath -File | Remove-Item -Force -Confirm:$false
 }
