@@ -14,7 +14,7 @@ $pTotal = $manifest.PluginMetadata | Measure-Object | Select-Object -ExpandPrope
 
 foreach($plugin in $manifest.PluginMetadata)
 {
-    Write-Host "Processing mod $pCount of $pTotal: " -NoNewline
+    Write-Host "Processing mod $pCount of $($pTotal): " -NoNewline
     $pCount++ | Out-Null
 
     if($null -eq $plugin.Enabled)
