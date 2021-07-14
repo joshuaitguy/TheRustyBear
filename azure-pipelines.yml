@@ -1,0 +1,31 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+
+pool:
+  name: 'PHX-Games'
+
+steps:
+- powershell: |
+   $ServerServiceNames = @("RustUMod")
+   
+   $ServerServiceNames | %{ Stop-Service -Name $_}
+   
+   Write-Host "##vso[task.setvariable variable=ServicesStopped;isOutput=true]Yes"
+  displayName: 'Stop Rust Server'
+
+- task: PowerShell@2
+  displayName: 'Install / Update Rust Server'
+  inputs:
+    targetType: filePath
+    filePath: './$(System.DefaultWorkingDirectory)/release/.scripts/Update-BaseRustServer.ps1'
+  condition: eq(variables['InstallRust'], 'true')
+
+- task: PowerShell@2
+  displayName: 'Install UMod'
+  inputs:
+    targetType: filePath
+    filePath: './$(System.DefaultWorkingDirectory)/release/.scripts/Install-RustOxide.ps1'
+  condition: eq(variables['InstallUMod'],'true')
