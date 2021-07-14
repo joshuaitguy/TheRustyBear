@@ -29,12 +29,12 @@ steps:
   displayName: 'Install / Update Rust Server'
   inputs:
     targetType: filePath
-    filePath: '$(System.DefaultWorkingDirectory)/release/.scripts/Update-BaseRustServer.ps1'
+    filePath: '$(System.DefaultWorkingDirectory)/.scripts/Update-BaseRustServer.ps1'
   condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
 
 - task: PowerShell@2
   displayName: 'Install UMod'
   inputs:
     targetType: filePath
-    filePath: '$(System.DefaultWorkingDirectory)/release/.scripts/Install-RustOxide.ps1'
+    filePath: '$(System.DefaultWorkingDirectory)/.scripts/Install-RustOxide.ps1'
   condition: and(succeeded(), eq(${{ parameters.InstallUMod }}, true))
