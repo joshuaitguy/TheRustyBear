@@ -7,13 +7,22 @@
 pool:
   name: 'PHX-Games'
 
+parameters:
+  - name: InstallRust
+    type: boolean
+    displayName: 'Install Rust'
+    default: true
+  - name: InstallUMod
+    type: boolean
+    displayName: 'Install uMod / Oxide'
+    default: true
+
+
 steps:
 - powershell: |
    $ServerServiceNames = @("RustUMod")
-   
+
    $ServerServiceNames | %{ Stop-Service -Name $_}
-   
-   Write-Host "##vso[task.setvariable variable=ServicesStopped;isOutput=true]Yes"
   displayName: 'Stop Rust Server'
 
 - task: PowerShell@2
@@ -21,11 +30,11 @@ steps:
   inputs:
     targetType: filePath
     filePath: './$(System.DefaultWorkingDirectory)/release/.scripts/Update-BaseRustServer.ps1'
-  condition: eq(variables['InstallRust'], 'true')
+  condition: eq(${{ parameters.InstallRust }}, true)
 
 - task: PowerShell@2
   displayName: 'Install UMod'
   inputs:
     targetType: filePath
     filePath: './$(System.DefaultWorkingDirectory)/release/.scripts/Install-RustOxide.ps1'
-  condition: eq(variables['InstallUMod'],'true')
+  condition: eq(${{ parameters.InstallUMod }}, true)
