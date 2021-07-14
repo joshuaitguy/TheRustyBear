@@ -14,7 +14,7 @@ $pTotal = $manifest.PluginMetadata | Measure-Object | Select-Object -ExpandPrope
 
 foreach($plugin in $manifest.PluginMetadata)
 {
-    "Processing mod #$($pCount) out of $pTotal"
+    Write-Host "Processing mod $pCount of $pTotal"
     $pCount++ | Out-Null
 
     if($null -eq $plugin.Enabled)
@@ -30,6 +30,8 @@ foreach($plugin in $manifest.PluginMetadata)
     {
         $fileName = Split-Path -Path $plugin.DownloadUrl -Leaf
         Invoke-WebRequest -Uri $plugin.DownloadUrl -OutFile (Join-Path -Path $PluginsPath -ChildPath $fileName)
-        Start-Sleep -Seconds 10
+        Write-Host ": " -NoNewline
+        Write-Host "Compleated!" -NoNewline -ForegroundColor Green
+        Start-Sleep -Seconds 6
     }
 }
