@@ -11,11 +11,11 @@ parameters:
   - name: InstallRust
     type: boolean
     displayName: 'Install Rust'
-    default: true
+    default: false
   - name: InstallUMod
     type: boolean
     displayName: 'Install uMod / Oxide'
-    default: true
+    default: false
 
 
 steps:
@@ -24,6 +24,7 @@ steps:
 
    $ServerServiceNames | %{ Stop-Service -Name $_}
   displayName: 'Stop Rust Server'
+  condition: or(eq(${{ parameters.InstallRust }}, true), eq(${{ parameters.InstallUMod }}, true))
 
 - task: PowerShell@2
   displayName: 'Install / Update Rust Server'
