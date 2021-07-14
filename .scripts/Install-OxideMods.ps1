@@ -31,6 +31,6 @@ foreach($plugin in $manifest.PluginMetadata)
         $fileName = Split-Path -Path $plugin.DownloadUrl -Leaf
         Invoke-WebRequest -Uri $plugin.DownloadUrl -OutFile (Join-Path -Path $PluginsPath -ChildPath $fileName)
         Write-Host "Compleated!" -ForegroundColor Green
-        Start-Sleep -Seconds 6
+        Start-Sleep -Seconds (Get-Random -Minimum 6 -Maximum 15)
     }
 }
