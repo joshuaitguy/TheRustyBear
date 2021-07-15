@@ -336,6 +336,11 @@
       "Name": "Stack Size Controller",
       "Page": "https://umod.org/plugins/stack-size-controller",
       "DownloadUrl": "https://umod.org/plugins/StackSizeController.cs"
+    },
+    {
+      "Name": "NTeleportation",
+      "Page": "https://umod.org/plugins/nteleportation",
+      "DownloadUrl": "https://umod.org/plugins/NTeleportation.cs"
     }
   ]
 }
