@@ -12,8 +12,32 @@ $manifest = Get-Content -Path $ServerManifestPath | ConvertFrom-Json
 $pCount = 1
 $pTotal = $manifest.PluginMetadata | Measure-Object | Select-Object -ExpandProperty count
 
-foreach($plugin in $manifest.PluginMetadata)
+$isPsCore = $PSVersionTable.PSVersion -gt "7.0"
+
+if($isPsCore)
 {
+  $manifest.PluginMetadata | ForEach-Object -Parallel {
+    if($null -eq $_.Enabled)
+    {
+      $shouldProcess = $true
+    }
+    else
+    {
+      $shouldProcess = $_.Enabled
+    }
+
+    if($shouldProcess)
+    {
+      $fileName = Split-Path -Path $_.DownloadUrl -Leaf
+      Invoke-WebRequest -Uri $_.DownloadUrl -OutFile (Join-Path -Path $PluginsPath -ChildPath $fileName)
+      Start-Sleep -Seconds (Get-Random -Minimum 6 -Maximum 15)
+    }
+  }
+}
+else
+{
+  foreach($plugin in $manifest.PluginMetadata)
+  {
     Write-Host "Processing mod $pCount of $($pTotal): " -NoNewline
     $pCount++ | Out-Null
 
@@ -33,4 +57,5 @@ foreach($plugin in $manifest.PluginMetadata)
         Write-Host "Compleated!" -ForegroundColor Green
         Start-Sleep -Seconds (Get-Random -Minimum 6 -Maximum 15)
     }
+  }
 }
