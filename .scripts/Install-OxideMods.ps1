@@ -29,7 +29,7 @@ if($isPsCore)
     if($shouldProcess)
     {
       $fileName = Split-Path -Path $_.DownloadUrl -Leaf
-      Invoke-WebRequest -Uri $_.DownloadUrl -OutFile (Join-Path -Path $PluginsPath -ChildPath $fileName)
+      Invoke-WebRequest -Uri $_.DownloadUrl -OutFile (Join-Path -Path $Using:PluginsPath -ChildPath $fileName)
       Start-Sleep -Seconds (Get-Random -Minimum 6 -Maximum 15)
     }
   }
