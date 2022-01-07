@@ -26,47 +26,11 @@ variables:
   ServersBasePath: '$(System.DefaultWorkingDirectory)/Servers'
 
 stages:
-- stage: PDT
-  displayName: Pre Deployment Tasks
-  condition: or(eq(${{ parameters.InstallRust }}, true), eq(${{ parameters.InstallUMod }}, true))
+- stage:
+  displayName: 'Snapshot Config & Deploy Latest Server Bits (Optional)'
   jobs:
-    - job:
-      displayName: 'Stop Rust Server'
-      steps:
-        - powershell: |
-            $ServerServiceNames = @("RustUMod")
-            $ServerServiceNames | %{ Stop-Service -Name $_}
-
-- stage: IBG
-  displayName: Install Base Game
-  condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
-  dependsOn: PDT
-  jobs:
-    - job:
-      steps:
-        - task: PowerShell@2
-          displayName: 'Install / Update Rust Server'
-          inputs:
-            targetType: filePath
-            filePath: '${{ variables.ScriptsBasePath }}/Update-BaseRustServer.ps1'
-
-- stage: IMP
-  displayName: Install Mod Platform
-  condition: and(succeeded(), eq(${{ parameters.InstallUMod }}, true))
-  dependsOn: IBG
-  jobs:
-    - job:
-      steps:
-        - task: PowerShell@2
-          displayName: 'Install UMod'
-          inputs:
-            targetType: filePath
-            filePath: '${{ variables.ScriptsBasePath }}/Install-RustOxide.ps1'
-
-- stage: PUB
-  displayName: Publish Configuration Files
-  jobs:
-    - job:
+    - job: CCS
+      displayName: Capture Config Snapshot
       steps:
         - task: PublishBuildArtifacts@1
           displayName: Publish Configuration Snapshot As Build Artifact
@@ -74,3 +38,33 @@ stages:
             ArtifactName: ConfigSnapShot
             PathtoPublish: '${{ variables.ServersBasePath }}'
             publishLocation: Container
+    - job: PDT
+      displayName: Pre Deployment Tasks
+      condition: or(eq(${{ parameters.InstallRust }}, true), eq(${{ parameters.InstallUMod }}, true))
+      steps:
+        - task: PowerShell@2
+          displayName: 'Stop Rust Server'
+          inputs:
+            script: |
+              $ServerServiceNames = @("RustUMod")
+              $ServerServiceNames | %{ Stop-Service -Name $_}
+    - job: IBG
+      displayName: Install Base Game
+      condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
+      dependsOn: PDT
+      steps:
+        - task: PowerShell@2
+          displayName: 'Install / Update Rust Server'
+          inputs:
+            targetType: filePath
+            filePath: '${{ variables.ScriptsBasePath }}/Update-BaseRustServer.ps1'
+    - job: IMP
+      displayName: Install Mod Platform
+      condition: and(succeeded(), eq(${{ parameters.InstallUMod }}, true))
+      dependsOn: IBG
+      steps:
+        - task: PowerShell@2
+          displayName: 'Install UMod'
+          inputs:
+            targetType: filePath
+            filePath: '${{ variables.ScriptsBasePath }}/Install-RustOxide.ps1'
