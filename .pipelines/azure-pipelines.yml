@@ -21,25 +21,56 @@ parameters:
     displayName: 'Install uMod / Oxide'
     default: false
 
+variables:
+  ScriptsBasePath: '$(System.DefaultWorkingDirectory)/.scripts'
+  ServersBasePath: '$(System.DefaultWorkingDirectory)/Servers'
 
-steps:
-- powershell: |
-   $ServerServiceNames = @("RustUMod")
-
-   $ServerServiceNames | %{ Stop-Service -Name $_}
-  displayName: 'Stop Rust Server'
+stages:
+- stage: PDT
+  displayName: Pre Deployment Tasks
   condition: or(eq(${{ parameters.InstallRust }}, true), eq(${{ parameters.InstallUMod }}, true))
+  jobs:
+    - job:
+      displayName: 'Stop Rust Server'
+      steps:
+        - powershell: |
+            $ServerServiceNames = @("RustUMod")
+            $ServerServiceNames | %{ Stop-Service -Name $_}
 
-- task: PowerShell@2
-  displayName: 'Install / Update Rust Server'
-  inputs:
-    targetType: filePath
-    filePath: '$(System.DefaultWorkingDirectory)/.scripts/Update-BaseRustServer.ps1'
+- stage: IBG
+  displayName: Install Base Game
   condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
+  dependsOn: PDT
+  jobs:
+    - job:
+      steps:
+        - task: PowerShell@2
+          displayName: 'Install / Update Rust Server'
+          inputs:
+            targetType: filePath
+            filePath: '${{ variables.ScriptsBasePath }}/Update-BaseRustServer.ps1'
 
-- task: PowerShell@2
-  displayName: 'Install UMod'
-  inputs:
-    targetType: filePath
-    filePath: '$(System.DefaultWorkingDirectory)/.scripts/Install-RustOxide.ps1'
+- stage: IMP
+  displayName: Install Mod Platform
   condition: and(succeeded(), eq(${{ parameters.InstallUMod }}, true))
+  dependsOn: IBG
+  jobs:
+    - job:
+      steps:
+        - task: PowerShell@2
+          displayName: 'Install UMod'
+          inputs:
+            targetType: filePath
+            filePath: '${{ variables.ScriptsBasePath }}/Install-RustOxide.ps1'
+
+- stage: PUB
+  displayName: Publish Configuration Files
+  jobs:
+    - job:
+      steps:
+        - task: PublishBuildArtifacts@1
+          displayName: Publish Configuration Snapshot As Build Artifact
+          inputs:
+            ArtifactName: ConfigSnapShot
+            PathtoPublish: '${{ variablese.ServersBasePath }}'
+            publishLocation: Container

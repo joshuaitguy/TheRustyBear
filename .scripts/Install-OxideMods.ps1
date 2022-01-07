@@ -19,18 +19,24 @@ if($isPsCore)
   $manifest.PluginMetadata | ForEach-Object -Parallel {
     if($null -eq $_.Enabled)
     {
-      $shouldProcess = $true
+      $enabled = $true
     }
     else
     {
-      $shouldProcess = $_.Enabled
+      $enabled = $_.Enabled
     }
 
-    if($shouldProcess)
+    $OutputFileFullName = (Join-Path -Path $Using:PluginsPath -ChildPath $fileName)
+
+    if($enabled)
     {
       $fileName = Split-Path -Path $_.DownloadUrl -Leaf
-      Invoke-WebRequest -Uri $_.DownloadUrl -OutFile (Join-Path -Path $Using:PluginsPath -ChildPath $fileName)
+      Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName
       Start-Sleep -Seconds (Get-Random -Minimum 6 -Maximum 15)
+    }
+    elseif($(Test-Path -Path $OutputFileFullName))
+    {
+      Remove-Item -Path $OutputFileFullName
     }
   }
 }
@@ -43,14 +49,14 @@ else
 
     if($null -eq $plugin.Enabled)
     {
-        $shouldProcess = $true
+        $enabled = $true
     }
     else
     {
-        $shouldProcess = $plugin.Enabled
+        $enabled = $plugin.Enabled
     }
 
-    if($shouldProcess)
+    if($enabled)
     {
         $fileName = Split-Path -Path $plugin.DownloadUrl -Leaf
         Invoke-WebRequest -Uri $plugin.DownloadUrl -OutFile (Join-Path -Path $PluginsPath -ChildPath $fileName)
