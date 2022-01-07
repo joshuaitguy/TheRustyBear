@@ -72,5 +72,5 @@ stages:
           displayName: Publish Configuration Snapshot As Build Artifact
           inputs:
             ArtifactName: ConfigSnapShot
-            PathtoPublish: '${{ variablese.ServersBasePath }}'
+            PathtoPublish: '${{ variables.ServersBasePath }}'
             publishLocation: Container
