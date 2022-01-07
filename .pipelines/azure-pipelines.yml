@@ -22,8 +22,9 @@ parameters:
     default: false
 
 variables:
-  ScriptsBasePath: '$(System.DefaultWorkingDirectory)/.scripts'
-  ServersBasePath: '$(System.DefaultWorkingDirectory)/Servers'
+  ResourcesBasePath: '$(System.DefaultWorkingDirectory)/Game Servers/TheRustyBear'
+  ScriptsBasePath: '${{ variables.ResourcesBasePath }}/.scripts'
+  ServersBasePath: '${{ variables.ResourcesBasePath }}/Server'
 
 stages:
 - stage:
