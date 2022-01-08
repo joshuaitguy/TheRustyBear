@@ -81,13 +81,13 @@ stages:
         (
           and
           (
-            eq(parameters.InstallUMod, 'true'),
+            eq(${{parameters.InstallUMod}}, 'true'),
             eq(dependencies.IBG.result, 'Succeeded')
           ),
           and
           (
-            eq(parameters.InstallUMod, 'true'),
-            eq(parameters.InstallRust, 'false'),
+            eq(${{parameters.InstallUMod}}, 'true'),
+            eq(${{parameters.InstallRust}}, 'false'),
             in(dependencies.IBG.result, 'Skipped')
           )
         )
