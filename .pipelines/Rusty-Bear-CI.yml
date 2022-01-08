@@ -58,6 +58,10 @@ stages:
               {
                 $ServerServiceNames | %{ Stop-Service -Name $_}
               }
+              else
+              {
+                "Service already stopped"
+              }
     - job: IBG
       displayName: Install Base Game
       condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
