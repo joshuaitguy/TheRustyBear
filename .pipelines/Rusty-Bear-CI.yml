@@ -75,7 +75,8 @@ stages:
     - job: IMP
       displayName: Install Mod Platform
       condition: and(succeeded(), eq(${{ parameters.InstallUMod }}, true))
-      dependsOn: IBG
+      - ${{ if and(eq(parameters.InstallRust, 'true'),eq(parameters.InstallUMod, 'true')) }}
+        dependsOn: IBG
       steps:
         - task: PowerShell@2
           displayName: 'Install UMod'
