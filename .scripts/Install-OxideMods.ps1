@@ -1,5 +1,5 @@
 param(
-    [string]$ResourcesPath
+    [string]$ResourcesPath,
     [string]$ServerPath
 )
 
