@@ -27,11 +27,11 @@ if($isPsCore)
       $enabled = $_.Enabled
     }
 
+    $fileName = Split-Path -Path $_.DownloadUrl -Leaf
     $OutputFileFullName = (Join-Path -Path $Using:PluginsPath -ChildPath $fileName)
 
     if($enabled)
     {
-      $fileName = Split-Path -Path $_.DownloadUrl -Leaf
       Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName
       Start-Sleep -Seconds (Get-Random -Minimum 6 -Maximum 15)
     }
