@@ -49,8 +49,8 @@ stages:
       steps:
         - task: PowerShell@2
           displayName: 'Stop Rust Server'
-          targetType: inline
           inputs:
+            targetType: inline
             script: |
               $ServerServiceNames = @("RustUMod")
               $ServerServiceNames | %{ Stop-Service -Name $_}
