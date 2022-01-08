@@ -3,6 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+name: 
+
 trigger:
   branches:
     include:
@@ -47,6 +49,7 @@ stages:
       steps:
         - task: PowerShell@2
           displayName: 'Stop Rust Server'
+          targetType: inline
           inputs:
             script: |
               $ServerServiceNames = @("RustUMod")
