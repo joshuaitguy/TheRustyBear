@@ -32,8 +32,27 @@ if($isPsCore)
 
     if($enabled)
     {
-      Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName
-      Start-Sleep -Seconds (Get-Random -Minimum 6 -Maximum 15)
+      $WasSuccessful = $false
+
+      do
+      {
+        try
+        {
+          Write-Host "Downloading File: $fileName" -NoNewline
+          Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName
+          Write-Host "Compleated!"
+          $WasSuccessful = $true
+        }
+        catch
+        {
+          Write-Host "Failed!"
+          if($_.Exception.Message -eq "Too Many Requests")
+          {
+            Write-Warning "Back Off Instruction Received. Sleeping for 60 seconds."
+            Start-Sleep -Seconds 60
+          }
+        }
+      }until($WasSuccessful)
     }
     elseif($(Test-Path -Path $OutputFileFullName))
     {
