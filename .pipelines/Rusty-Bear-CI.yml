@@ -88,7 +88,7 @@ stages:
           (
             eq(${{parameters.InstallUMod}}, 'true'),
             eq(${{parameters.InstallRust}}, 'false'),
-            in(dependencies.IBG.result, 'Skipped')
+            eq(dependencies.IBG.result, 'Skipped')
           )
         )
       steps:
