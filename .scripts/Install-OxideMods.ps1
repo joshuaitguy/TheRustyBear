@@ -38,7 +38,7 @@ if($isPsCore)
       {
         try
         {
-          Write-Host "Downloading File: $fileName" -NoNewline
+          Write-Host "Downloading File: $fileName " -NoNewline
           Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName
           Write-Host "Compleated!"
           $WasSuccessful = $true
@@ -46,7 +46,7 @@ if($isPsCore)
         catch
         {
           Write-Host "Failed!"
-          if($_.Exception.Message -eq "Too Many Requests")
+          if($_.Exception.Response.StatusCode -eq 429)
           {
             Write-Warning "Back Off Instruction Received. Sleeping for 60 seconds."
             Start-Sleep -Seconds 60
