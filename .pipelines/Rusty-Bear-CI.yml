@@ -74,9 +74,23 @@ stages:
             filePath: '${{ variables.ScriptsBasePath }}/Update-BaseRustServer.ps1'
     - job: IMP
       displayName: Install Mod Platform
-      condition: and(succeeded(), eq(${{ parameters.InstallUMod }}, true))
-      - ${{ if and(eq(parameters.InstallRust, 'true'),eq(parameters.InstallUMod, 'true')) }}
-        dependsOn: IBG
+      dependsOn: 
+      - IBG
+      condition: |
+        or
+        (
+          and
+          (
+            eq(parameters.InstallUMod, 'true'),
+            eq(dependencies.IBG.result, 'Succeeded')
+          ),
+          and
+          (
+            eq(parameters.InstallUMod, 'true'),
+            eq(parameters.InstallRust, 'false')
+            in(dependencies.IBG.result, 'Skipped')
+          )
+        )
       steps:
         - task: PowerShell@2
           displayName: 'Install UMod'
