@@ -9,10 +9,9 @@ parameters:
   - name: FullClean
     type: boolean
     default: false
-  - ${{ if eq(parameters.FullClean, false)}}:
-    - name: Wipe
-      type: boolean
-      default: false
+  - name: Wipe
+    type: boolean
+    default: false
 
 
 pool: PHX-Games
