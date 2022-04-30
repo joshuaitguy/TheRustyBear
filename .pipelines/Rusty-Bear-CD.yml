@@ -60,19 +60,19 @@ jobs:
               condition: and(succeeded(), or(eq(${{ parameters.Wipe }}, true),eq(${{ parameters.FullClean }}, true)))
               inputs:
                 targetType: filePath
-                filePath: $(ScriptsPath)/Clean-Oxide.ps1
+                filePath: ${{ variables.ScriptsPath }}/Clean-Oxide.ps1
                 arguments: '-ServerPath "${{ variables.ServerPath }}" -FullClean $${{ parameters.FullClean}}'
             - task: PowerShell@2
               displayName: Publish Server Configuration Files
               inputs:
                 targetType: filePath
-                filePath: $(ScriptsPath)/Install-ServerConfigs.ps1
+                filePath: ${{ variables.ScriptsPath }}/Install-ServerConfigs.ps1
                 arguments: -ServerPath '$(ServerPath)' -ServerRepoPath '$(ResourcesPath)'
             - task: PowerShell@2
               displayName: Install Mods
               inputs:
                 targetType: filePath
-                filePath: $(ScriptsPath)/Install-OxideMods.ps1
+                filePath: ${{ variables.ScriptsPath }}/Install-OxideMods.ps1
                 arguments: -ServerPath '$(ServerPath)' -ResourcesPath '$(ResourcesPath)'
             - task: PowerShell@2
               displayName: Start Rust Server
