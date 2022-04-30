@@ -9,9 +9,10 @@ parameters:
   - name: FullClean
     type: boolean
     default: false
-  - name: Wipe
-    type: boolean
-    default: false
+  - ${{ if eq(parameters.FullClean, false)}}:
+    - name: Wipe
+      type: boolean
+      default: false
 
 
 pool: PHX-Games
@@ -74,6 +75,7 @@ jobs:
                 targetType: filePath
                 filePath: ${{ variables.ScriptsPath }}/Install-OxideMods.ps1
                 arguments: -ServerPath '$(ServerPath)' -ResourcesPath '$(ResourcesPath)'
+                pwsh: true
             - task: PowerShell@2
               displayName: Start Rust Server
               inputs:
