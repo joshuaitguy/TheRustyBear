@@ -1,2 +1,87 @@
-trigger:
-  - none
+name: $(Year:YYYY).$(Month).$(DayOfMonth).$(Rev:rr)
+
+trigger: none
+
+parameters:
+  - name: StopService
+    type: boolean
+    default: true
+  - name: FullClean
+    type: boolean
+    default: false
+  - name: Wipe
+    type: boolean
+    default: false
+
+
+pool: PHX-Games
+
+resources:
+  pipelines:
+    - pipeline: latest
+      source: TheRustyBear
+      trigger:
+        branches:
+          - main
+
+jobs:
+  - deployment: deploy
+    displayName: Deploy Server
+    environment: PHX
+    variables:
+      ServerPath: G:\Rust\Server\The Rusty Bear
+      ScriptPath: $(System.DefaultWorkingDirectory)/Scripts/.Scripts
+      ResourcesPath: $(System.DefaultWorkingDirectory)/release/ConfigSnapShot/The Rusty Bear
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - task: PowerShell@2
+              displayName: Stop Server
+              condition: eq(parameters.StopService, true)
+              inputs:
+                targetType: inline
+                script: |
+                  $ServerServiceNames = @("RustUMod")
+                  $serviceRunning = Get-Service -name "RustUMod"
+                  if($serviceRunning.Status -eq 'Running')
+                  {
+                    $ServerServiceNames | %{ Stop-Service -Name $_}
+                  }
+                  else
+                  {
+                    "Service already stopped"
+                  }
+            - task: PowerShell@2
+              displayName: Clean Server
+              condition: or(eq(parameters.Wipe, true),eq(parameters.FullClean))
+              inputs:
+                targetType: filePath
+                filePath: $(ScriptsPath)/Clean-Oxide.ps1
+                arguments: '-ServerPath "${{ variables.ServerPath }}" -FullClean $${{ parameters.FullClean}}'
+            - task: PowerShell@2
+              displayName: Publish Server Configuration Files
+              inputs:
+                targetType: filePath
+                filePath: $(ScriptsPath)/Install-ServerConfigs.ps1
+                arguments: -ServerPath '$(ServerPath)' -ServerRepoPath '$(ResourcesPath)'
+            - task: PowerShell@2
+              displayName: Install Mods
+              inputs:
+                targetType: filePath
+                filePath: $(ScriptsPath)/Install-OxideMods.ps1
+                arguments: -ServerPath '$(ServerPath)' -ResourcesPath '$(ResourcesPath)'
+            - task: PowerShell@2
+              displayName: Start Rust Server
+              inputs:
+                targetType: inline
+                script: |
+                  Start-Service -Name "RustUMod"
+            - task: PowerShell@2
+              displayName: Remove Plugin Manifest
+              condition: true
+              inputs:
+                targetType: inline
+                script: |
+                  Remove-Item -Path '$(ServerPath)\oxide\plugins\plugins.manifest.json' 
+          
