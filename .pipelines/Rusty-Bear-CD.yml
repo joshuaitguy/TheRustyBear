@@ -41,7 +41,7 @@ jobs:
           steps:
             - task: PowerShell@2
               displayName: Stop Server
-              condition: and(succeeded(), eq(parameters.StopService, true))
+              condition: and(succeeded(), eq(${{ parameters.StopService }}, true))
               inputs:
                 targetType: inline
                 script: |
@@ -57,7 +57,7 @@ jobs:
                   }
             - task: PowerShell@2
               displayName: Clean Server
-              condition: and(succeeded(), or(eq(parameters.Wipe, true),eq(parameters.FullClean, true)))
+              condition: and(succeeded(), or(eq(${{ parameters.Wipe }}, true),eq(${{ parameters.FullClean }}, true)))
               inputs:
                 targetType: filePath
                 filePath: $(ScriptsPath)/Clean-Oxide.ps1
