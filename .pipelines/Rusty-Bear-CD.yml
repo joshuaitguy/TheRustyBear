@@ -33,7 +33,7 @@ jobs:
     environment: PHX
     variables:
       ServerPath: G:\Rust\Server\The Rusty Bear
-      ScriptsPath: $(Pipeline.Workspace)/latest/Scripts/.Scripts
+      ScriptsPath: $(Pipeline.Workspace)/latest/Scripts
       ResourcesPath: ${{ variables.SourcesRoot }}
     strategy:
       runOnce:
