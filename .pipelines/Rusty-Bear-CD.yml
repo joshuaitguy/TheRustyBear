@@ -54,7 +54,7 @@ jobs:
                   }
             - task: PowerShell@2
               displayName: Clean Server
-              condition: or(eq(parameters.Wipe, true),eq(parameters.FullClean))
+              condition: or(eq(parameters.Wipe, true),eq(parameters.FullClean, true))
               inputs:
                 targetType: filePath
                 filePath: $(ScriptsPath)/Clean-Oxide.ps1
