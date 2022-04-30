@@ -39,6 +39,12 @@ stages:
       displayName: Capture Config Snapshot
       steps:
         - task: PublishBuildArtifacts@1
+          displayName: Publish Scripts
+          inputs:
+            ArtifactName: Scripts
+            PathtoPublish: $(Build.SourcesDirectory)/.scripts
+            publishLocation: Container
+        - task: PublishBuildArtifacts@1
           displayName: Publish Configuration Snapshot As Build Artifact
           inputs:
             ArtifactName: ConfigSnapShot

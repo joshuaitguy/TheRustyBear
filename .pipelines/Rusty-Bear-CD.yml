@@ -24,14 +24,17 @@ resources:
         branches:
           - main
 
+variables:
+  SourcesRoot: $(Pipeline.Workspace)/latest/ConfigSnapShot/The Rusty Bear
+
 jobs:
   - deployment: deploy
     displayName: Deploy Server
     environment: PHX
     variables:
       ServerPath: G:\Rust\Server\The Rusty Bear
-      ScriptPath: $(System.DefaultWorkingDirectory)/Scripts/.Scripts
-      ResourcesPath: $(System.DefaultWorkingDirectory)/release/ConfigSnapShot/The Rusty Bear
+      ScriptPath: ${{ variables.SourcesRoot }}/Scripts/.Scripts
+      ResourcesPath: ${{ variables.SourcesRoot }}
     strategy:
       runOnce:
         deploy:
