@@ -1,0 +1,5 @@
+variables:
+  ServerPath: G:\Rust\Server\The Rusty Bear
+  DeployRoot: $(Pipeline.Workspace)/latest
+  ScriptsBasePath: ${{ variables.DeployRoot }}/Scripts
+  SourcesRoot: ${{ variables.DeployRoot }}/ConfigSnapShot/The Rusty Bear
