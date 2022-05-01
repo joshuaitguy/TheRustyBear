@@ -83,7 +83,7 @@ stages:
                     condition: and(succeeded(), or(eq(${{ parameters.Wipe }}, true),eq(${{ parameters.FullClean }}, true)))
                     inputs:
                       targetType: filePath
-                      filePath: ${{ variables.ScriptsPath }}/Clean-Oxide.ps1
+                      filePath: ${{ variables.ScriptsBasePath }}/Clean-Oxide.ps1
                       arguments: '-ServerPath "${{ variables.ServerPath }}" -FullClean $${{ parameters.FullClean}}'
                 
             deploy:
@@ -97,7 +97,7 @@ stages:
                   displayName: Publish Server Configuration Files
                   inputs:
                     targetType: filePath
-                    filePath: ${{ variables.ScriptsPath }}/Install-ServerConfigs.ps1
+                    filePath: ${{ variables.ScriptsBasePath }}/Install-ServerConfigs.ps1
                     arguments: -ServerPath '${{ variables.ServerPath }}' -ServerRepoPath '${{ variables.SourcesRoot }}'
   - stage: S2
     displayName: Stage 2
