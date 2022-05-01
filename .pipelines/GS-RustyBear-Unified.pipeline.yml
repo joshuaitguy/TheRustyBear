@@ -48,9 +48,10 @@ resources:
 variables:
   BuildRoot: $(Build.SourcesDirectory)
   dt: Pipelines/BaseInfra/Stages.Base.Template.yml@Templates
-  ScriptsBasePath: $(Pipeline.Workspace)/latest/Scripts
+  ScriptsBasePath: ${{ variables.DeployRoot }}/Scripts
   ServerPath: G:\Rust\Server\The Rusty Bear
-  SourcesRoot: $(Pipeline.Workspace)/latest/ConfigSnapShot/The Rusty Bear
+  SourcesRoot: ${{ variables.DeployRoot }}/ConfigSnapShot/The Rusty Bear
+  DeployRoot: $(Pipeline.Workspace)/latest
 
 stages:
   - stage: 1
@@ -93,6 +94,8 @@ stages:
             preDeploy:
               steps:
                 - template: PreDeploy.Step.yml
+                  parameters:
+                    DownloadArtifacts: true
                 - ${{ if or(eq(parameters.Wipe, true), eq(parameters.FullClean, true))}}:
                   - task: PowerShell@2
                     displayName: Clean Server
@@ -101,6 +104,7 @@ stages:
                       targetType: filePath
                       filePath: ${{ variables.ScriptsPath }}/Clean-Oxide.ps1
                       arguments: '-ServerPath "${{ variables.ServerPath }}" -FullClean $${{ parameters.FullClean}}'
+                
             deploy:
               steps:
                 - task: PowerShell@2
@@ -173,4 +177,4 @@ stages:
                       targetType: inline
                       script: |
                         Write-Output "Removing Plugin Manifest"
-                        Remove-Item -Path '$(ServerPath)\oxide\plugins\plugins.manifest.json' 
+                        Remove-Item -Path '${{ variables.ServerPath }}\oxide\plugins\plugins.manifest.json' 
