@@ -16,16 +16,6 @@ trigger:
 pool:
   name: 'PHX-Games'
 
-parameters:
-  - name: InstallRust
-    type: boolean
-    displayName: 'Install Rust'
-    default: false
-  - name: InstallUMod
-    type: boolean
-    displayName: 'Install uMod / Oxide'
-    default: false
-
 variables:
   ScriptsBasePath: '$(System.DefaultWorkingDirectory)/.scripts'
   ServersBasePath: '$(System.DefaultWorkingDirectory)/Server'

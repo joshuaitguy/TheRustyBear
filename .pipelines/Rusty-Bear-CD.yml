@@ -54,9 +54,10 @@ variables:
   SourcesRoot: ${{ variables.DeployRoot }}/ConfigSnapShot/The Rusty Bear
   DeployRoot: $(Pipeline.Workspace)/latest
 
+pool: PHX-Games
+
 stages:
   - stage: 1
-    pool: PHX
     displayName: Stage 1
     dependsOn: []
     jobs:
@@ -94,7 +95,6 @@ stages:
                     filePath: ${{ variables.ScriptsPath }}/Install-ServerConfigs.ps1
                     arguments: -ServerPath '${{ variables.ServerPath }}' -ServerRepoPath '${{ variables.SourcesRoot }}'
   - stage: 2
-    pool: PHX
     displayName: Stage 2
     dependsOn: 1
     jobs:
@@ -124,7 +124,6 @@ stages:
                     arguments: -ServerPath '${{ variables.ServerPath }}' -ResourcesPath '${{ variables.SourcesRoot }}'
                     pwsh: true
   - stage: 3
-    pool: PHX
     displayName: Stage 3
     dependsOn: 
       - 1
