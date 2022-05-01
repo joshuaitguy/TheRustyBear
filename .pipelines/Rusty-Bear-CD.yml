@@ -25,6 +25,10 @@ parameters:
     displayName: Wipe Game Server
     type: boolean
     default: false
+  - name: StopService
+    displayName: Stop Game Server
+    type: boolean
+    default: true    
   - name: SkipStart
     type: boolean
     displayName: Skip Server Start
@@ -33,10 +37,7 @@ parameters:
     type: boolean
     displayName: Skip Post Deployment Cleanup
     default: false
-  - name: StopService
-    displayName: Stop Game Server
-    type: boolean
-    default: true
+
 
 resources:
   repositories:

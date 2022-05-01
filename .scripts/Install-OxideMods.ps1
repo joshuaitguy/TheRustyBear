@@ -18,7 +18,7 @@ $isPsCore = $PSVersionTable.PSVersion -gt "7.0"
 
 if($isPsCore)
 {
-  $modCount = $manifest.PluginMetadata.Count
+  $modCount = $pTotal
   $manifest.PluginMetadata | ForEach-Object -Parallel {
     $modCount-- | Out-Null
     if($null -eq $_.Enabled)
