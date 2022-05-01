@@ -17,10 +17,6 @@ parameters:
     type: boolean
     displayName: 'Install uMod / Oxide'
     default: false
-  - name: StopService
-    displayName: Stop Game Server
-    type: boolean
-    default: true
   - name: FullClean
     displayName: Full Clean
     type: boolean
@@ -37,6 +33,10 @@ parameters:
     type: boolean
     displayName: Skip Post Deployment Cleanup
     default: false
+  - name: StopService
+    displayName: Stop Game Server
+    type: boolean
+    default: true
 
 resources:
   repositories:
