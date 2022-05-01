@@ -64,7 +64,7 @@ variables:
 pool: PHX-Games
 
 stages:
-  - stage: 1
+  - stage: S1
     displayName: Stage 1
     dependsOn: []
     jobs:
@@ -99,9 +99,9 @@ stages:
                     targetType: filePath
                     filePath: ${{ variables.ScriptsPath }}/Install-ServerConfigs.ps1
                     arguments: -ServerPath '${{ variables.ServerPath }}' -ServerRepoPath '${{ variables.SourcesRoot }}'
-  - stage: 2
+  - stage: S2
     displayName: Stage 2
-    dependsOn: 1
+    dependsOn: S1
     jobs:
       - deployment: d2
         environment: PHX
@@ -126,11 +126,11 @@ stages:
                     filePath: ${{ variables.ScriptsBasePath }}/Install-OxideMods.ps1
                     arguments: -ServerPath '${{ variables.ServerPath }}' -ResourcesPath '${{ variables.SourcesRoot }}'
                     pwsh: true
-  - stage: 3
+  - stage: S3
     displayName: Stage 3
     dependsOn: 
-      - 1
-      - 2
+      - S1
+      - S2
     condition: always()
     jobs:
       - deployment: d3
