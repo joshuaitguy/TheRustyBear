@@ -58,8 +58,7 @@ variables:
   dt: Pipelines/BaseInfra/Stages.Base.Template.yml@Templates
   ScriptsBasePath: ${{ variables.DeployRoot }}/Scripts
   ServerPath: G:\Rust\Server\The Rusty Bear
-  SourcesRoot: ${{ variables.DeployRoot }}/ConfigSnapShot/The Rusty Bear
-  DeployRoot: $(Pipeline.Workspace)/latest
+  SourcesRoot: ${{ variables.DeployRoot }}/ConfigSnapShot/The Rusty Bear  
 
 pool: PHX-Games
 
@@ -72,6 +71,8 @@ stages:
         environment: PHX
         displayName: Deploy Base Rust Game Server
         condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
+        variables:
+          DeployRoot: $(Pipeline.Workspace)/latest
         strategy:
           runOnce:
             preDeploy:
@@ -80,7 +81,6 @@ stages:
                 - ${{ if or(eq(parameters.Wipe, true), eq(parameters.FullClean, true))}}:
                   - task: PowerShell@2
                     displayName: Clean Server
-                    condition: and(succeeded(), or(eq(${{ parameters.Wipe }}, true),eq(${{ parameters.FullClean }}, true)))
                     inputs:
                       targetType: filePath
                       filePath: ${{ variables.ScriptsBasePath }}/Clean-Oxide.ps1
@@ -107,6 +107,8 @@ stages:
         environment: PHX
         displayName: Deploy Oxide on to Rust Game Server
         condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
+        variables:
+          DeployRoot: $(Pipeline.Workspace)/latest
         strategy:
           runOnce:
             preDeploy:
@@ -136,6 +138,8 @@ stages:
       - deployment: d3
         environment: PHX
         displayName: Post Deployment Activities
+        variables:
+          DeployRoot: $(Pipeline.Workspace)/latest
         strategy:
           runOnce:
             deploy:
