@@ -45,6 +45,13 @@ resources:
       name: OneBuild/OneBuild.Pipelines
       ref: refs/tags/nx.baseVar
       endpoint: UTMO
+  pipelines:
+    - pipeline: latest
+      source: TheRustyBear
+      trigger:
+        branches:
+          include:
+            - main
 
 variables:
   BuildRoot: $(Build.SourcesDirectory)
@@ -70,8 +77,6 @@ stages:
             preDeploy:
               steps:
                 - template: PreDeploy.Step.yml
-                  parameters:
-                    DownloadArtifacts: true
                 - ${{ if or(eq(parameters.Wipe, true), eq(parameters.FullClean, true))}}:
                   - task: PowerShell@2
                     displayName: Clean Server
@@ -107,8 +112,6 @@ stages:
             preDeploy:
               steps:
                 - template: PreDeploy.Step.yml
-                  parameters:
-                    DownloadArtifacts: true
             deploy:
               steps:
                 - task: PowerShell@2
