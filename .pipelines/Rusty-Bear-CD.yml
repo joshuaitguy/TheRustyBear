@@ -58,7 +58,7 @@ variables:
   dt: Pipelines/BaseInfra/Stages.Base.Template.yml@Templates
   ScriptsBasePath: ${{ variables.DeployRoot }}/Scripts
   ServerPath: G:\Rust\Server\The Rusty Bear
-  SourcesRoot: ${{ variables.DeployRoot }}/ConfigSnapShot/The Rusty Bear  
+  SourcesRoot: ${{ variables.DeployRoot }}/ConfigSnapShot/The Rusty Bear
 
 pool: PHX-Games
 
