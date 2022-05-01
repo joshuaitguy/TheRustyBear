@@ -1,6 +1,7 @@
 param(
     [string]$ResourcesPath,
-    [string]$ServerPath
+    [string]$ServerPath,
+    [int]$BackoffSeconds = 60
 )
 
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
@@ -17,7 +18,9 @@ $isPsCore = $PSVersionTable.PSVersion -gt "7.0"
 
 if($isPsCore)
 {
+  $modCount = $manifest.PluginMetadata.Count
   $manifest.PluginMetadata | ForEach-Object -Parallel {
+    $modCount-- | Out-Null
     if($null -eq $_.Enabled)
     {
       $enabled = $true
@@ -38,17 +41,16 @@ if($isPsCore)
       {
         try
         {
-          Write-Host "Downloading File: $fileName " -NoNewline
+          Write-Host "Downloading File: $fileName "
           Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName
-          Write-Host "Compleated!"
+          Write-Host "Compleated Download of File: $fileName; $modCount mods remaining"
           $WasSuccessful = $true
         }
         catch
         {
-          Write-Host "Failed!"
           if($_.Exception.Response.StatusCode -eq 429)
           {
-            Write-Warning "Back Off Instruction Received. Sleeping for 60 seconds."
+            Write-Warning "Recived Backoff Requst for File: $fileName. Sleeping download for $BackoffSeconds seconds."
             Start-Sleep -Seconds 60
           }
         }

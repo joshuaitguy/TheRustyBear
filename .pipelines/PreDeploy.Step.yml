@@ -1,0 +1,16 @@
+steps:
+- task: PowerShell@2
+  displayName: 'Stop Rust Server'
+  inputs:
+    targetType: inline
+    script: |
+      $ServerServiceNames = @("RustUMod")
+      $serviceRunning = Get-Service -name "RustUMod"
+      if($serviceRunning.Status -eq 'Running')
+      {
+        $ServerServiceNames | %{ Stop-Service -Name $_}
+      }
+      else
+      {
+        "Service already stopped"
+      }
