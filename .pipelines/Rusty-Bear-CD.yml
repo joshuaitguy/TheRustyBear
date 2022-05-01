@@ -1,91 +1,156 @@
 name: $(Year:YYYY).$(Month).$(DayOfMonth).$(Rev:rr)
 
-trigger: none
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - Server/*
 
 parameters:
+  - name: InstallRust
+    type: boolean
+    displayName: 'Install Rust'
+    default: false
+  - name: InstallUMod
+    type: boolean
+    displayName: 'Install uMod / Oxide'
+    default: false
   - name: StopService
+    displayName: Stop Game Server
     type: boolean
     default: true
   - name: FullClean
+    displayName: Full Clean
     type: boolean
     default: false
   - name: Wipe
+    displayName: Wipe Game Server
     type: boolean
     default: false
-
-
-pool: PHX-Games
+  - name: SkipStart
+    type: boolean
+    displayName: Skip Server Start
+    default: false
+  - name: SkipClean
+    type: boolean
+    displayName: Skip Post Deployment Cleanup
+    default: false
 
 resources:
-  pipelines:
-    - pipeline: latest
-      source: TheRustyBear
-      trigger:
-        branches:
-          - main
+  repositories:
+    - repository: Templates
+      type: git
+      name: OneBuild/OneBuild.Pipelines
+      ref: refs/tags/nx.baseVar
+      endpoint: UTMO
 
 variables:
-  SourcesRoot: $(Pipeline.Workspace)/latest/ConfigSnapShot/The Rusty Bear
+  BuildRoot: $(Build.SourcesDirectory)
+  dt: Pipelines/BaseInfra/Stages.Base.Template.yml@Templates
+  ScriptsBasePath: ${{ variables.DeployRoot }}/Scripts
+  ServerPath: G:\Rust\Server\The Rusty Bear
+  SourcesRoot: ${{ variables.DeployRoot }}/ConfigSnapShot/The Rusty Bear
+  DeployRoot: $(Pipeline.Workspace)/latest
 
-jobs:
-  - deployment: deploy
-    displayName: Deploy Server
-    environment: PHX
-    variables:
-      ServerPath: G:\Rust\Server\The Rusty Bear
-      ScriptsPath: $(Pipeline.Workspace)/latest/Scripts
-      ResourcesPath: ${{ variables.SourcesRoot }}
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-            - task: PowerShell@2
-              displayName: Stop Server
-              condition: and(succeeded(), eq(${{ parameters.StopService }}, true))
-              inputs:
-                targetType: inline
-                script: |
-                  $ServerServiceNames = @("RustUMod")
-                  $serviceRunning = Get-Service -name "RustUMod"
-                  if($serviceRunning.Status -eq 'Running')
-                  {
-                    $ServerServiceNames | %{ Stop-Service -Name $_}
-                  }
-                  else
-                  {
-                    "Service already stopped"
-                  }
-            - task: PowerShell@2
-              displayName: Clean Server
-              condition: and(succeeded(), or(eq(${{ parameters.Wipe }}, true),eq(${{ parameters.FullClean }}, true)))
-              inputs:
-                targetType: filePath
-                filePath: ${{ variables.ScriptsPath }}/Clean-Oxide.ps1
-                arguments: '-ServerPath "${{ variables.ServerPath }}" -FullClean $${{ parameters.FullClean}}'
-            - task: PowerShell@2
-              displayName: Publish Server Configuration Files
-              inputs:
-                targetType: filePath
-                filePath: ${{ variables.ScriptsPath }}/Install-ServerConfigs.ps1
-                arguments: -ServerPath '$(ServerPath)' -ServerRepoPath '$(ResourcesPath)'
-            - task: PowerShell@2
-              displayName: Install Mods
-              inputs:
-                targetType: filePath
-                filePath: ${{ variables.ScriptsPath }}/Install-OxideMods.ps1
-                arguments: -ServerPath '$(ServerPath)' -ResourcesPath '$(ResourcesPath)'
-                pwsh: true
-            - task: PowerShell@2
-              displayName: Start Rust Server
-              inputs:
-                targetType: inline
-                script: |
-                  Start-Service -Name "RustUMod"
-            - task: PowerShell@2
-              displayName: Remove Plugin Manifest
-              condition: always() 
-              inputs:
-                targetType: inline
-                script: |
-                  Remove-Item -Path '$(ServerPath)\oxide\plugins\plugins.manifest.json' 
-          
+stages:
+  - stage: 1
+    pool: PHX
+    displayName: Stage 1
+    dependsOn: []
+    jobs:
+      - deployment: d1
+        environment: PHX
+        displayName: Deploy Base Rust Game Server
+        condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
+        strategy:
+          runOnce:
+            preDeploy:
+              steps:
+                - template: PreDeploy.Step.yml
+                  parameters:
+                    DownloadArtifacts: true
+                - ${{ if or(eq(parameters.Wipe, true), eq(parameters.FullClean, true))}}:
+                  - task: PowerShell@2
+                    displayName: Clean Server
+                    condition: and(succeeded(), or(eq(${{ parameters.Wipe }}, true),eq(${{ parameters.FullClean }}, true)))
+                    inputs:
+                      targetType: filePath
+                      filePath: ${{ variables.ScriptsPath }}/Clean-Oxide.ps1
+                      arguments: '-ServerPath "${{ variables.ServerPath }}" -FullClean $${{ parameters.FullClean}}'
+                
+            deploy:
+              steps:
+                - task: PowerShell@2
+                  displayName: 'Install / Update Rust Server'
+                  inputs:
+                    targetType: filePath
+                    filePath: '${{ variables.ScriptsBasePath }}/Update-BaseRustServer.ps1'
+                - task: PowerShell@2
+                  displayName: Publish Server Configuration Files
+                  inputs:
+                    targetType: filePath
+                    filePath: ${{ variables.ScriptsPath }}/Install-ServerConfigs.ps1
+                    arguments: -ServerPath '${{ variables.ServerPath }}' -ServerRepoPath '${{ variables.SourcesRoot }}'
+  - stage: 2
+    pool: PHX
+    displayName: Stage 2
+    dependsOn: 1
+    jobs:
+      - deployment: d2
+        environment: PHX
+        displayName: Deploy Oxide on to Rust Game Server
+        condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
+        strategy:
+          runOnce:
+            preDeploy:
+              steps:
+                - template: PreDeploy.Step.yml
+                  parameters:
+                    DownloadArtifacts: true
+            deploy:
+              steps:
+                - task: PowerShell@2
+                  displayName: 'Install UMod'
+                  inputs:
+                    targetType: filePath
+                    filePath: '${{ variables.ScriptsBasePath }}/Install-RustOxide.ps1'
+                - task: PowerShell@2
+                  displayName: Install Mods
+                  inputs:
+                    targetType: filePath
+                    filePath: ${{ variables.ScriptsBasePath }}/Install-OxideMods.ps1
+                    arguments: -ServerPath '${{ variables.ServerPath }}' -ResourcesPath '${{ variables.SourcesRoot }}'
+                    pwsh: true
+  - stage: 3
+    pool: PHX
+    displayName: Stage 3
+    dependsOn: 
+      - 1
+      - 2
+    condition: and(always(), or(eq(parameters.SkipStart, false), eq(parameters.SkipClean, false)))
+    jobs:
+      - deployment: d3
+        environment: PHX
+        displayName: Post Deployment Activities
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - ${{ if eq(parameters.SkipStart, false) }}:
+                  - task: PowerShell@2
+                    displayName: Start Rust Server
+                    inputs:
+                      targetType: inline
+                      script: |
+                        Start-Service -Name "RustUMod"
+                - ${{ if eq(parameters.SkipClean, false) }}:
+                  - task: PowerShell@2
+                    displayName: Clean-up Deployment Files
+                    condition: always() 
+                    inputs:
+                      targetType: inline
+                      script: |
+                        Write-Output "Removing Plugin Manifest"
+                        Remove-Item -Path '${{ variables.ServerPath }}\oxide\plugins\plugins.manifest.json' 
