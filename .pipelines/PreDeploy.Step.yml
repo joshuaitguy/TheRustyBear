@@ -22,13 +22,10 @@ steps:
 - ${{ if eq(parameters.DownloadArtifacts, true) }}:
   - task: DownloadBuildArtifacts@1
     inputs:
-      artifactName: ConfigSnapShot
-      buildType: current
-      downloadType: single
-      downloadPath: ${{ variables.DeployRoot }}/ConfigSnapShot
-  - task: DownloadBuildArtifacts@1
-    inputs:
-      artifactName: Scripts
-      buildType: current
-      downloadType: single
-      downloadPath: ${{ variables.DeployRoot }}/Scripts
+      buildType: specific
+      project: Game Server Hosting
+      pipeline: TheRustyBear
+      buildVersionToDownload: latestFromBranch
+      branchName: main
+      downloadType: specific
+      downloadPath: ${{ variables.DeployRoot }}
