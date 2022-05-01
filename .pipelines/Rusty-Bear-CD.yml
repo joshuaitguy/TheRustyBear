@@ -104,7 +104,7 @@ stages:
       - deployment: d2
         environment: PHX
         displayName: Deploy Oxide on to Rust Game Server
-        condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
+        condition: and(succeeded(), eq(${{ parameters.InstallUMod }}, true))
         variables:
           - template: DeployVariables.variables.yml
         strategy:

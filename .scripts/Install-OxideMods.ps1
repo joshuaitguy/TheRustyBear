@@ -4,6 +4,8 @@ param(
     [int]$BackoffSeconds = 60
 )
 
+
+
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
 
 $PluginsPath = Join-Path -Path $ServerPath -ChildPath "oxide/plugins"
