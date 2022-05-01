@@ -131,7 +131,7 @@ stages:
     dependsOn: 
       - 1
       - 2
-    condition: and(always(), or(eq(parameters.SkipStart, false), eq(parameters.SkipClean, false)))
+    condition: always()
     jobs:
       - deployment: d3
         environment: PHX
