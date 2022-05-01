@@ -32,6 +32,6 @@ if((Test-Path -Path $DataDirPath) -eq $true)
 
 if($FullClean)
 {
-    Get-ChildItem -Path "$ServerPath\oxide" -Directory | ?{$_.Name -ne "data"} | Remove-Item -Force -Recurse
+    Get-ChildItem -Path "$ServerPath\oxide" -Directory | ?{$_.Name -ne "data"} -ErrorAction SilentlyContinue | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
     Get-ChildItem -Path $ServerPath -File | Remove-Item -Force -Recurse
 }
