@@ -43,7 +43,7 @@ resources:
     - repository: Templates
       type: git
       name: OneBuild/OneBuild.Pipelines
-      ref: refs/tags/nx.baseVar
+      ref: refs/tags/0.stable
       endpoint: UTMO
   pipelines:
     - pipeline: latest
