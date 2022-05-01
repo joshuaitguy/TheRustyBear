@@ -73,6 +73,7 @@ stages:
         condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
         variables:
           DeployRoot: $(Pipeline.Workspace)/latest
+          ScriptsBasePath: ${{ variables.DeployRoot }}/Scripts
         strategy:
           runOnce:
             preDeploy:
@@ -109,6 +110,7 @@ stages:
         condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
         variables:
           DeployRoot: $(Pipeline.Workspace)/latest
+          ScriptsBasePath: ${{ variables.DeployRoot }}/Scripts
         strategy:
           runOnce:
             preDeploy:
@@ -140,6 +142,7 @@ stages:
         displayName: Post Deployment Activities
         variables:
           DeployRoot: $(Pipeline.Workspace)/latest
+          ScriptsBasePath: ${{ variables.DeployRoot }}/Scripts
         strategy:
           runOnce:
             deploy:
