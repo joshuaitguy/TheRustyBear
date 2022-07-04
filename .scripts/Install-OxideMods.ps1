@@ -20,12 +20,11 @@ $isPsCore = $PSVersionTable.PSVersion -gt "7.0"
 
 if($isPsCore)
 {
-  $modCount = $pTotal
+  [int]$Global:modCount = $pTotal
   $manifest.PluginMetadata | ForEach-Object -Parallel {
-    $modCount-- | Out-Null
     if($null -eq $_.Enabled)
     {
-      $enabled = $true
+      $enabled = $false
     }
     else
     {
@@ -45,6 +44,7 @@ if($isPsCore)
         {
           Write-Host "Downloading File: $fileName "
           Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName
+          [System.Threading.Interlocked]::Decrement([ref] $Global:modCount) | Out-Null
           Write-Host "Compleated Download of File: $fileName; $modCount mods remaining"
           $WasSuccessful = $true
         }
@@ -52,8 +52,8 @@ if($isPsCore)
         {
           if($_.Exception.Response.StatusCode -eq 429)
           {
-            Write-Warning "Recived Backoff Requst for File: $fileName. Sleeping download for $BackoffSeconds seconds."
-            Start-Sleep -Seconds 60
+            Write-Warning "Recived Backoff Requst for File: $fileName. Sleeping download for $Using:BackoffSeconds seconds."
+            Start-Sleep -Seconds $Using:BackoffSeconds
           }
         }
       }until($WasSuccessful)
