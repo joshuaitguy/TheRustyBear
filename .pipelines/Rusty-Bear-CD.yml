@@ -96,7 +96,7 @@ stages:
                     filePath: ${{ variables.ScriptsBasePath }}/Install-ServerConfigs.ps1
                     arguments: -ServerPath '${{ variables.ServerPath }}' -ServerRepoPath '${{ variables.SourcesRoot }}'
                     workingDirectory: 
-  - ${{ if eq(parameters.InstallUMod, true}}:
+  - ${{ if eq(parameters.InstallUMod, true)}}:
     - stage: S2
       displayName: Stage 2 (MOD)
       dependsOn: S1
