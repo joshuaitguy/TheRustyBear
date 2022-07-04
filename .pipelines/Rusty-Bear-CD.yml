@@ -130,8 +130,10 @@ stages:
   - stage: S3
     displayName: Stage 3 (CLEAN)
     dependsOn: 
-      - S1
-      - S2
+      - ${{ if eq(parameters.InstallRust, true)}}:
+        - S1
+      - ${{ if eq(parameters.InstallUMod, true)}}:
+        - S2
     condition: always()
     jobs:
       - deployment: d3
