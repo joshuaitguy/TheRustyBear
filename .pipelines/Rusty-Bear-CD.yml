@@ -67,7 +67,6 @@ stages:
       - deployment: d1
         environment: PHX
         displayName: Deploy Base Rust Game Server
-        condition: and(succeeded(), eq(${{ parameters.InstallRust }}, true))
         variables:
           - template: DeployVariables.variables.yml
         strategy:
@@ -82,14 +81,14 @@ stages:
                       targetType: filePath
                       filePath: ${{ variables.ScriptsBasePath }}/Clean-Oxide.ps1
                       arguments: '-ServerPath "${{ variables.ServerPath }}" -FullClean $${{ parameters.FullClean}}'
-                
             deploy:
               steps:
-                - task: PowerShell@2
-                  displayName: 'Install / Update Rust Server'
-                  inputs:
-                    targetType: filePath
-                    filePath: '${{ variables.ScriptsBasePath }}/Update-BaseRustServer.ps1'
+                - ${{ if eq(${{ parameters.InstallRust }}, true)}}:
+                  - task: PowerShell@2
+                    displayName: 'Install / Update Rust Server'
+                    inputs:
+                      targetType: filePath
+                      filePath: '${{ variables.ScriptsBasePath }}/Update-BaseRustServer.ps1'
                 - task: PowerShell@2
                   displayName: Publish Server Configuration Files
                   inputs:
@@ -97,35 +96,37 @@ stages:
                     filePath: ${{ variables.ScriptsBasePath }}/Install-ServerConfigs.ps1
                     arguments: -ServerPath '${{ variables.ServerPath }}' -ServerRepoPath '${{ variables.SourcesRoot }}'
                     workingDirectory: 
-  - stage: S2
-    displayName: Stage 2 (MOD)
-    dependsOn: S1
-    jobs:
-      - deployment: d2
-        environment: PHX
-        displayName: Deploy Oxide on to Rust Game Server
-        condition: and(succeeded(), eq(${{ parameters.InstallUMod }}, true))
-        variables:
-          - template: DeployVariables.variables.yml
-        strategy:
-          runOnce:
-            preDeploy:
-              steps:
-                - template: PreDeploy.Step.yml
-            deploy:
-              steps:
-                - task: PowerShell@2
-                  displayName: 'Install UMod'
-                  inputs:
-                    targetType: filePath
-                    filePath: '${{ variables.ScriptsBasePath }}/Install-RustOxide.ps1'
-                - task: PowerShell@2
-                  displayName: Install Mods
-                  inputs:
-                    targetType: filePath
-                    filePath: ${{ variables.ScriptsBasePath }}/Install-OxideMods.ps1
-                    arguments: -ServerPath '${{ variables.ServerPath }}' -ResourcesPath '${{ variables.SourcesRoot }}'
-                    pwsh: true
+  - ${{ if eq(parameters.InstallUMod, true}}:
+    - stage: S2
+      displayName: Stage 2 (MOD)
+      dependsOn: S1
+      jobs:
+        - deployment: d2
+          environment: PHX
+          displayName: Deploy Oxide on to Rust Game Server
+          condition: and(succeeded(), eq(${{ parameters.InstallUMod }}, true))
+          variables:
+            - template: DeployVariables.variables.yml
+          strategy:
+            runOnce:
+              preDeploy:
+                steps:
+                  - template: PreDeploy.Step.yml
+              deploy:
+                steps:
+                  - ${{ if eq(${{ parameters.InstallUMod }}, true)}}:
+                    - task: PowerShell@2
+                      displayName: 'Install UMod'
+                      inputs:
+                        targetType: filePath
+                        filePath: '${{ variables.ScriptsBasePath }}/Install-RustOxide.ps1'
+                  - task: PowerShell@2
+                    displayName: Install Mods
+                    inputs:
+                      targetType: filePath
+                      filePath: ${{ variables.ScriptsBasePath }}/Install-OxideMods.ps1
+                      arguments: -ServerPath '${{ variables.ServerPath }}' -ResourcesPath '${{ variables.SourcesRoot }}'
+                      pwsh: true
   - stage: S3
     displayName: Stage 3 (CLEAN)
     dependsOn: 
@@ -157,4 +158,4 @@ stages:
                       targetType: inline
                       script: |
                         Write-Output "Removing Plugin Manifest"
-                        Remove-Item -Path '${{ variables.ServerPath }}\oxide\plugins\plugins.manifest.json' 
+                        Remove-Item -Path '${{ variables.ServerPath }}\oxide\plugins\plugins.manifest.json' -ErrorAction SilentlyContinue
