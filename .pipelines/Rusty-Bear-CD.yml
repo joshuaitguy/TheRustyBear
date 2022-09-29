@@ -15,7 +15,7 @@ parameters:
     default: false
   - name: DeployConfig
     type: boolean
-    displayName: Deploy Server / Mod Condif
+    displayName: Deploy Server / Mod Config
     default: true
   - name: InstallUMod
     type: boolean
@@ -110,7 +110,9 @@ stages:
   - ${{ if or(eq(parameters.InstallUMod, true),eq(parameters.InstallMods, true))}}:
     - stage: S2
       displayName: Stage 2 (MOD)
-      dependsOn: S1
+      dependsOn:
+        - ${{ if or(eq(parameters.InstallRust, true),eq(parameters.DeployConfig, true))}}:
+          - S1
       jobs:
         - deployment: d2
           environment: PHX
