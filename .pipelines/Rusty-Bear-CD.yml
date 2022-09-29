@@ -13,6 +13,10 @@ parameters:
     type: boolean
     displayName: 'Install Rust'
     default: false
+  - name: DeployConfig
+    type: boolean
+    displayName: Deploy Server / Mod Condif
+    default: true
   - name: InstallUMod
     type: boolean
     displayName: 'Install uMod / Oxide'
@@ -64,44 +68,45 @@ variables:
 pool: PHX-Games
 
 stages:
-  - stage: S1
-    displayName: Stage 1 (Deploy)
-    dependsOn: []
-    jobs:
-      - deployment: d1
-        environment: PHX
-        displayName: Deploy Base Rust Game Server
-        variables:
-          - template: DeployVariables.variables.yml
-        strategy:
-          runOnce:
-            preDeploy:
-              steps:
-                - template: PreDeploy.Step.yml
-                  parameters:
-                    StopServer: ${{ parameters.StopService }}
-                - ${{ if or(eq(parameters.Wipe, true), eq(parameters.FullClean, true))}}:
-                  - task: PowerShell@2
-                    displayName: Clean Server
-                    inputs:
-                      targetType: filePath
-                      filePath: ${{ variables.ScriptsBasePath }}/Clean-Oxide.ps1
-                      arguments: '-ServerPath "${{ variables.ServerPath }}" -FullClean $${{ parameters.FullClean}}'
-            deploy:
-              steps:
-                - ${{ if eq(parameters.InstallRust, true)}}:
-                  - task: PowerShell@2
-                    displayName: 'Install / Update Rust Server'
-                    inputs:
-                      targetType: filePath
-                      filePath: '${{ variables.ScriptsBasePath }}/Update-BaseRustServer.ps1'
-                - task: PowerShell@2
-                  displayName: Publish Server Configuration Files
-                  inputs:
-                    targetType: filePath
-                    filePath: ${{ variables.ScriptsBasePath }}/Install-ServerConfigs.ps1
-                    arguments: -ServerPath '${{ variables.ServerPath }}' -ServerRepoPath '${{ variables.SourcesRoot }}'
-                    workingDirectory: 
+  - ${{ if or(eq(parameters.InstallRust, true),eq(parameters.DeployConfig, true))}}:
+    - stage: S1
+      displayName: Stage 1 (Deploy)
+      dependsOn: []
+      jobs:
+        - deployment: d1
+          environment: PHX
+          displayName: Deploy Base Rust Game Server
+          variables:
+            - template: DeployVariables.variables.yml
+          strategy:
+            runOnce:
+              preDeploy:
+                steps:
+                  - template: PreDeploy.Step.yml
+                    parameters:
+                      StopServer: ${{ parameters.StopService }}
+                  - ${{ if or(eq(parameters.Wipe, true), eq(parameters.FullClean, true))}}:
+                    - task: PowerShell@2
+                      displayName: Clean Server
+                      inputs:
+                        targetType: filePath
+                        filePath: ${{ variables.ScriptsBasePath }}/Clean-Oxide.ps1
+                        arguments: '-ServerPath "${{ variables.ServerPath }}" -FullClean $${{ parameters.FullClean}}'
+              deploy:
+                steps:
+                  - ${{ if eq(parameters.InstallRust, true)}}:
+                    - task: PowerShell@2
+                      displayName: 'Install / Update Rust Server'
+                      inputs:
+                        targetType: filePath
+                        filePath: '${{ variables.ScriptsBasePath }}/Update-BaseRustServer.ps1'
+                  - ${{ if eq(parameters.DeployConfig, true)}}:
+                    - task: PowerShell@2
+                      displayName: Publish Server Configuration Files
+                      inputs:
+                        targetType: filePath
+                        filePath: ${{ variables.ScriptsBasePath }}/Install-ServerConfigs.ps1
+                        arguments: -ServerPath '${{ variables.ServerPath }}' -ServerRepoPath '${{ variables.SourcesRoot }}'
   - ${{ if or(eq(parameters.InstallUMod, true),eq(parameters.InstallMods, true))}}:
     - stage: S2
       displayName: Stage 2 (MOD)
@@ -117,6 +122,8 @@ stages:
               preDeploy:
                 steps:
                   - template: PreDeploy.Step.yml
+                    parameters:
+                      StopServer: ${{ parameters.StopService }}
               deploy:
                 steps:
                   - ${{ if eq(parameters.InstallUMod, true)}}:
@@ -135,9 +142,9 @@ stages:
   - stage: S3
     displayName: Stage 3 (CLEAN)
     dependsOn: 
-      - ${{ if eq(parameters.InstallRust, true)}}:
+      - ${{ if or(eq(parameters.InstallRust, true),eq(parameters.DeployConfig, true))}}:
         - S1
-      - ${{ if eq(parameters.InstallUMod, true)}}:
+      - ${{ if or(eq(parameters.InstallUMod, true),eq(parameters.InstallMods, true))}}:
         - S2
     condition: always()
     jobs:
@@ -150,7 +157,7 @@ stages:
           runOnce:
             deploy:
               steps:
-                - ${{ if eq(parameters.SkipStart, false) }}:
+                - ${{ if eq(parameters.StartService, true) }}:
                   - task: PowerShell@2
                     displayName: Start Rust Server
                     inputs:
