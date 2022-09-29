@@ -17,6 +17,10 @@ parameters:
     type: boolean
     displayName: 'Install uMod / Oxide'
     default: false
+  - name: InstallMods
+    type: boolean
+    displayName: Install Mods
+    default: false
   - name: FullClean
     displayName: Full Clean
     type: boolean
@@ -96,7 +100,7 @@ stages:
                     filePath: ${{ variables.ScriptsBasePath }}/Install-ServerConfigs.ps1
                     arguments: -ServerPath '${{ variables.ServerPath }}' -ServerRepoPath '${{ variables.SourcesRoot }}'
                     workingDirectory: 
-  - ${{ if eq(parameters.InstallUMod, true)}}:
+  - ${{ if or(eq(parameters.InstallUMod, true),eq(parameters.InstallMods, true))}}:
     - stage: S2
       displayName: Stage 2 (MOD)
       dependsOn: S1
@@ -104,7 +108,6 @@ stages:
         - deployment: d2
           environment: PHX
           displayName: Deploy Oxide on to Rust Game Server
-          condition: and(succeeded(), eq(${{ parameters.InstallUMod }}, true))
           variables:
             - template: DeployVariables.variables.yml
           strategy:
@@ -120,12 +123,13 @@ stages:
                       inputs:
                         targetType: filePath
                         filePath: '${{ variables.ScriptsBasePath }}/Install-RustOxide.ps1'
-                  - task: PowerShell@2
+                  - ${{ if eq(parameters.InstallMods, true)}}:
+                    - task: PowerShell@2
                     displayName: Install Mods
                     inputs:
-                      targetType: filePath
-                      filePath: ${{ variables.ScriptsBasePath }}/Install-OxideMods.ps1
-                      arguments: -ServerPath '${{ variables.ServerPath }}' -ResourcesPath '${{ variables.SourcesRoot }}'
+                        targetType: filePath
+                        filePath: ${{ variables.ScriptsBasePath }}/Install-OxideMods.ps1
+                        arguments: -ServerPath '${{ variables.ServerPath }}' -ResourcesPath '${{ variables.SourcesRoot }}'
   - stage: S3
     displayName: Stage 3 (CLEAN)
     dependsOn: 
