@@ -20,7 +20,7 @@ parameters:
   - name: InstallMods
     type: boolean
     displayName: Install Mods
-    default: false
+    default: true
   - name: FullClean
     displayName: Full Clean
     type: boolean
@@ -32,10 +32,10 @@ parameters:
   - name: StopService
     displayName: Stop Game Server
     type: boolean
-    default: true    
-  - name: SkipStart
+    default: false    
+  - name: StartService
     type: boolean
-    displayName: Skip Server Start
+    displayName: Start Game Server
     default: false
   - name: SkipClean
     type: boolean
@@ -78,6 +78,8 @@ stages:
             preDeploy:
               steps:
                 - template: PreDeploy.Step.yml
+                  parameters:
+                    StopServer: ${{ parameters.StopService }}
                 - ${{ if or(eq(parameters.Wipe, true), eq(parameters.FullClean, true))}}:
                   - task: PowerShell@2
                     displayName: Clean Server
