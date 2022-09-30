@@ -18,7 +18,6 @@ $isPsCore = $PSVersionTable.PSVersion -gt "7.0"
 
 if($isPsCore)
 {
-  [ThreadSafeInt]$Global:modCount = [ThreadSafeInt]::new($pTotal)
   $manifest.PluginMetadata | ForEach-Object -Parallel {
     if($null -eq $_.Enabled)
     {
