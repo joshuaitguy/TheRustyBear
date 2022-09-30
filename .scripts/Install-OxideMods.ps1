@@ -57,7 +57,8 @@ if($isPsCore)
           }
           else
           {
-            throw $_
+            Write-Warning "Encountered exception of type: $($_.Exception.GetType().Name) with the following message: $($_.Exception.Message)."
+            break;
           }
         }
       }until($WasSuccessful)
