@@ -11,11 +11,12 @@
   "GUI Button": {
     "Image": "https://i.imgur.com/CyF0QNV.png",
     "Background color (RGBA format)": "1 0.96 0.88 0.15",
-    "GUI Button Position": {
+    "GUI Button Position":
+    {
       "Anchors Min": "0.5 0.0",
       "Anchors Max": "0.5 0.0",
-      "Offsets Min": "185 18",
-      "Offsets Max": "245 78"
+      "Offsets Min": "-265 18",
+      "Offsets Max": "-205 78"
     }
   },
   "Softcore": {
