@@ -8,7 +8,7 @@ class ThreadSafeInt {
   [int]$Value
   [hashtable]$Lock = @{Lock='Value'}
 
-  ThreadSafeIntS([int]$value=0) {
+  ThreadSafeInt([int]$value=0) {
     $this.Value = $value
   }
 
