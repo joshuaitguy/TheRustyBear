@@ -59,6 +59,7 @@ if($isPsCore)
           else
           {
             Write-Warning "Encountered exception of type: $($_.Exception.GetType().Name) with the following message: $($_.Exception.Message)."
+            $WasSuccessful = $true
           }
         }
       }while($WasSuccessful -eq $true)
