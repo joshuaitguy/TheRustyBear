@@ -4,45 +4,6 @@ param(
     [int]$BackoffSeconds = 60
 )
 
-class ThreadSafeInt {
-  [int]$Value
-  [hashtable]$Lock = @{Lock='Value'}
-
-  ThreadSafeInt([int]$value=0) {
-    $this.Value = $value
-  }
-
-  [void] Incrament() {
-    $this.Alter(1)
-  }
-
-  [void] Decrament() {
-    $this.Alter(-1)
-  }
-
-  [void] Alter([int]$Ammount)
-  {
-    try
-    {
-      [System.Threading.Monitor]::Enter($this.Lock)
-      $LockTaken = $true
-
-      $this.Value = $this.Value + $Ammount
-    }
-    catch
-    {
-      throw "Lock Failed!"
-    }
-    finally
-    {
-      if($LockTaken)
-      {
-        [System.Threading.Monitor]::Exit($this.Lock)
-      }
-    }
-  }
-}
-
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
 
 $PluginsPath = Join-Path -Path $ServerPath -ChildPath "oxide/plugins"
@@ -80,11 +41,10 @@ if($isPsCore)
       {
         try
         {
-          Write-Host "Downloading File: $fileName. Try # $($Attempt++)"
+          Write-Host "Downloading File: $fileName."
           Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName -ErrorAction Stop
           $WasSuccessful = $true
-          $Global:modCount.Decrament()
-          Write-Host "Compleated Download of File: $fileName; $($Global:modCount.Value) mods remaining"
+          Write-Host "Compleated Download of File: $fileName."
         }
         catch
         {
