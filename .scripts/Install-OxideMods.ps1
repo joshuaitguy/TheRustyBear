@@ -4,7 +4,44 @@ param(
     [int]$BackoffSeconds = 60
 )
 
+class ThreadSafeInt {
+  [int]$Value
+  [hashtable]$Lock = @{Lock='Value'}
 
+  [ThreadSafeInt] ThreadSafeIntS([int]$value=0) {
+    $this.Value = $value
+  }
+
+  [void] Incrament() {
+    $this.Alter(1)
+  }
+
+  [void] Decrament() {
+    $this.Alter(-1)
+  }
+
+  [void] Alter([int]$Ammount)
+  {
+    try
+    {
+      [System.Threading.Monitor]::Enter($this.Lock)
+      $LockTaken = $true
+
+      $this.Value = $this.Value + $Ammount
+    }
+    catch
+    {
+      throw "Lock Failed!"
+    }
+    finally
+    {
+      if($LockTaken)
+      {
+        [System.Threading.Monitor]::Exit($this.Lock)
+      }
+    }
+  }
+}
 
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
 
@@ -20,7 +57,7 @@ $isPsCore = $PSVersionTable.PSVersion -gt "7.0"
 
 if($isPsCore)
 {
-  [int]$modCount = $pTotal
+  [ThreadSafeInt]$modCount = [ThreadSafeInt]::new($pTotal)
   $manifest.PluginMetadata | ForEach-Object -Parallel {
     if($null -eq $_.Enabled)
     {
@@ -46,8 +83,8 @@ if($isPsCore)
           Write-Host "Downloading File: $fileName. Try # $($Attempt++)"
           Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName -ErrorAction Stop
           $WasSuccessful = $true
-          $Using:modCount--
-          Write-Host "Compleated Download of File: $fileName; $Using:modCount mods remaining"
+          $Using:modCount.Decrament()
+          Write-Host "Compleated Download of File: $fileName; $($Using:modCount.Value) mods remaining"
         }
         catch
         {
