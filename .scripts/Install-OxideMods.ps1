@@ -55,6 +55,10 @@ if($isPsCore)
             Write-Warning "Recived Backoff Requst for File: $fileName. Sleeping download for $Using:BackoffSeconds seconds."
             Start-Sleep -Seconds $Using:BackoffSeconds
           }
+          else
+          {
+            throw $_
+          }
         }
       }until($WasSuccessful)
     }
