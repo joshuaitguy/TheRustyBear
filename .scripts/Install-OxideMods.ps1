@@ -42,7 +42,7 @@ if($isPsCore)
       {
         try
         {
-          Write-Host "Downloading File: $fileName "
+          Write-Host "Downloading File: $fileName"
           Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName
           [System.Threading.Interlocked]::Decrement([ref] $Global:modCount) | Out-Null
           Write-Host "Compleated Download of File: $fileName; $Global:modCount mods remaining"
@@ -61,13 +61,13 @@ if($isPsCore)
             break;
           }
         }
-      }until($WasSuccessful)
+      }while(-not $WasSuccessful)
     }
     elseif($(Test-Path -Path $OutputFileFullName))
     {
       Remove-Item -Path $OutputFileFullName
     }
-  }
+  } 
 }
 else
 {
