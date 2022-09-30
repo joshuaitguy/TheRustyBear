@@ -20,7 +20,7 @@ $isPsCore = $PSVersionTable.PSVersion -gt "7.0"
 
 if($isPsCore)
 {
-  [int]$Global:modCount = $pTotal
+  [int]$modCount = $pTotal
   $manifest.PluginMetadata | ForEach-Object -Parallel {
     if($null -eq $_.Enabled)
     {
@@ -46,7 +46,7 @@ if($isPsCore)
           Write-Host "Downloading File: $fileName. Try # $($Attempt++)"
           Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName -ErrorAction Stop
           $WasSuccessful = $true
-          [System.Threading.Interlocked]::Decrement([ref] $Global:modCount) | Out-Null
+          [System.Threading.Interlocked]::Decrement([ref] $Using:modCount) | Out-Null
           Write-Host "Compleated Download of File: $fileName; $Global:modCount mods remaining"
         }
         catch
