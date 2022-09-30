@@ -141,6 +141,7 @@ stages:
                         targetType: filePath
                         filePath: ${{ variables.ScriptsBasePath }}/Install-OxideMods.ps1
                         arguments: -ServerPath '${{ variables.ServerPath }}' -ResourcesPath '${{ variables.SourcesRoot }}'
+                        pwsh: true
   - stage: S3
     displayName: Stage 3 (CLEAN)
     dependsOn: 
