@@ -1,16 +1,18 @@
 {
   "Permission": "quicksmelt.use",
   "Use Permission": false,
-  "Speed Multipliers": {
-    "furnace": 10.0,
-    "furnace.large": 10.0,
-    "refinery_small_deployed": 10.0,
+  "Speed Multipliers":
+  {
+    "furnace": 4.0,
+    "furnace.large": 5.0,
+    "refinery_small_deployed": 4.0,
     "campfire": 1.0,
     "skull_fire_pit": 1.0,
     "fireplace.deployed": 1.0,
     "bbq.deployed": 1.0
   },
-  "Fuel Usage Speed Multipliers": {
+  "Fuel Usage Speed Multipliers":
+  {
     "furnace": 0.4,
     "furnace.large": 0.4,
     "refinery_small_deployed": 0.4,
@@ -19,7 +21,8 @@
     "fireplace.deployed": 1.0,
     "bbq.deployed": 1.0
   },
-  "Fuel Usage Multipliers": {
+  "Fuel Usage Multipliers":
+  {
     "furnace": 5,
     "furnace.large": 5,
     "refinery_small_deployed": 5,
@@ -28,24 +31,29 @@
     "fireplace.deployed": 1,
     "bbq.deployed": 1
   },
-  "Output Multipliers": {
-    "furnace": {
+  "Output Multipliers":
+  {
+    "furnace":
+    {
       "metal.fragments": 1.0,
       "sulfur": 1.0,
       "metal.refined": 1.0,
       "charcoal": 10.0
     },
-    "furnace.large": {
+    "furnace.large":
+    {
       "metal.fragments": 1.0,
       "sulfur": 1.0,
       "metal.refined": 1.0,
       "charcoal": 10.0
     },
-    "refinery_small_deployed": {
+    "refinery_small_deployed":
+    {
       "lowgradefuel": 1.0,
       "charcoal": 10.0
     },
-    "campfire": {
+    "campfire":
+    {
       "bearmeat.cooked": 1.0,
       "chicken.cooked": 1.0,
       "deermeat.cooked": 1.0,
@@ -56,7 +64,8 @@
       "wolfmeat.cooked": 1.0,
       "charcoal": 10.0
     },
-    "skull_fire_pit": {
+    "skull_fire_pit":
+    {
       "bearmeat.cooked": 1.0,
       "chicken.cooked": 1.0,
       "deermeat.cooked": 1.0,
@@ -68,7 +77,8 @@
       "wolfmeat.cooked": 1.0,
       "charcoal": 10.0
     },
-    "fireplace.deployed": {
+    "fireplace.deployed":
+    {
       "bearmeat.cooked": 1.0,
       "chicken.cooked": 1.0,
       "deermeat.cooked": 1.0,
@@ -80,7 +90,8 @@
       "wolfmeat.cooked": 1.0,
       "charcoal": 10.0
     },
-    "bbq.deployed": {
+    "bbq.deployed":
+    {
       "bearmeat.cooked": 1.0,
       "chicken.cooked": 1.0,
       "deermeat.cooked": 1.0,
@@ -93,8 +104,10 @@
       "charcoal": 10.0
     }
   },
-  "Whitelist": {
-    "furnace": [
+  "Whitelist":
+  {
+    "furnace":
+    [
       "metal.ore",
       "sulfur.ore",
       "hq.metal.ore",
@@ -111,7 +124,8 @@
       "crude.oil",
       "charcoal"
     ],
-    "furnace.large": [
+    "furnace.large":
+    [
       "metal.ore",
       "sulfur.ore",
       "hq.metal.ore",
@@ -128,10 +142,12 @@
       "crude.oil",
       "charcoal"
     ],
-    "small.oil.refinery": [
+    "small.oil.refinery":
+    [
       "crude.oil"
     ],
-    "campfire": [
+    "campfire":
+    [
       "bearmeat",
       "chicken.raw",
       "deermeat.raw",
@@ -144,7 +160,8 @@
       "can.beans.empty",
       "charcoal"
     ],
-    "skull_fire_pit": [
+    "skull_fire_pit":
+    [
       "bearmeat",
       "chicken.raw",
       "deermeat.raw",
@@ -158,7 +175,8 @@
       "can.beans.empty",
       "charcoal"
     ],
-    "fireplace.deployed": [
+    "fireplace.deployed":
+    [
       "bearmeat",
       "chicken.raw",
       "deermeat.raw",
@@ -172,7 +190,8 @@
       "can.beans.empty",
       "charcoal"
     ],
-    "bbq.deployed": [
+    "bbq.deployed":
+    [
       "bearmeat",
       "chicken.raw",
       "deermeat.raw",
@@ -187,8 +206,10 @@
       "charcoal"
     ]
   },
-  "Blacklist": {
-    "global": [
+  "Blacklist":
+  {
+    "global":
+    [
       "bearmeat.cooked",
       "chicken.cooked",
       "deermeat.cooked",
@@ -199,7 +220,8 @@
       "wolfmeat.cooked"
     ]
   },
-  "Smelting Frequencies (Smelt items every N smelting ticks)": {
+  "Smelting Frequencies (Smelt items every N smelting ticks)":
+  {
     "global": 1
   },
   "Debug": false
