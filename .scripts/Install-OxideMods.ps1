@@ -34,7 +34,6 @@ if($isPsCore)
     if($enabled)
     {
       $WasSuccessful = $false
-      $Attempt = 0
 
       do
       {
@@ -58,7 +57,7 @@ if($isPsCore)
             $WasSuccessful = $true
           }
         }
-      }while($WasSuccessful -eq $true)
+      }while($WasSuccessful -eq $false)
     }
     elseif($(Test-Path -Path $OutputFileFullName))
     {
