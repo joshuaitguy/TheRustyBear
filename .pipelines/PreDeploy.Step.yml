@@ -9,6 +9,7 @@ parameters:
 steps:
 - task: PowerShell@2
   displayName: 'Stop Rust Server'
+  condition: eq(parameters.StopServer, true)
   inputs:
     targetType: inline
     script: |
