@@ -43,7 +43,7 @@ if($isPsCore)
         try
         {
           Write-Host "Downloading File: $fileName"
-          Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName
+          Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName -ErrorAction Stop
           $WasSuccessful = $true
           [System.Threading.Interlocked]::Decrement([ref] $Global:modCount) | Out-Null
           Write-Host "Compleated Download of File: $fileName; $Global:modCount mods remaining"
