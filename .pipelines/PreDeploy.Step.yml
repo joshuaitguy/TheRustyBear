@@ -9,7 +9,7 @@ parameters:
 steps:
 - task: PowerShell@2
   displayName: 'Stop Rust Server'
-  condition: and(Succeeded(), eq(parameters['StopServer'], true))
+  condition: and(Succeeded(), eq('${{ parameters.StopServer }}', 'true'))
   inputs:
     targetType: inline
     script: |
