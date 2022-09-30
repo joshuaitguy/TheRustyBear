@@ -37,12 +37,13 @@ if($isPsCore)
     if($enabled)
     {
       $WasSuccessful = $false
+      $Attempt = 0
 
       do
       {
         try
         {
-          Write-Host "Downloading File: $fileName"
+          Write-Host "Downloading File: $fileName. Try # $($Attempt++)"
           Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName -ErrorAction Stop
           $WasSuccessful = $true
           [System.Threading.Interlocked]::Decrement([ref] $Global:modCount) | Out-Null
@@ -58,7 +59,6 @@ if($isPsCore)
           else
           {
             Write-Warning "Encountered exception of type: $($_.Exception.GetType().Name) with the following message: $($_.Exception.Message)."
-            break;
           }
         }
       }while($WasSuccessful -eq $true)
