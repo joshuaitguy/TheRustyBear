@@ -2,6 +2,30 @@
   "$schema": "http://json.schema.cloud.utmonline.net/2021/07/RustPluginManifest.json",
   "PluginMetadata": [
     {
+      "Name": "Vehicle Deployed Locks",
+      "Page": "https://umod.org/plugins/vehicle-deployed-locks",
+      "DownloadUrl": "https://umod.org/plugins/VehicleDeployedLocks.cs",
+      "Enabled": true
+    },
+    {
+      "Name": "Module Car Turrets",
+      "Page": "https://umod.org/plugins/modular-car-turrets",
+      "DownloadUrl": "https://umod.org/plugins/CarTurrets.cs",
+      "Enabled": true
+    },
+    {
+      "Name": "Modded Work Carts",
+      "Page": "https://umod.org/plugins/modded-work-carts",
+      "DownloadUrl": "https://umod.org/plugins/ModdedWorkCarts.cs",
+      "Enabled": true
+    },
+    {
+      "Name": "Auto Doors",
+      "Page": "https://umod.org/plugins/auto-doors",
+      "DownloadUrl": "https://umod.org/plugins/AutoDoors.cs",
+      "Enabled": true
+    },
+    {
       "Name": "Death Notes",
       "Page": "https://www.umod.org/plugins/death-notes",
       "DownloadUrl": "https://www.umod.org/plugins/DeathNotes.cs",
