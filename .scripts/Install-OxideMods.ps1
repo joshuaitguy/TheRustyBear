@@ -61,7 +61,7 @@ if($isPsCore)
             break;
           }
         }
-      }while(-not $WasSuccessful)
+      }while($WasSuccessful -eq $true)
     }
     elseif($(Test-Path -Path $OutputFileFullName))
     {
