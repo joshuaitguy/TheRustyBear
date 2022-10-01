@@ -3,9 +3,9 @@
   "Use Permission": false,
   "Speed Multipliers":
   {
-    "furnace": 4.0,
-    "furnace.large": 5.0,
-    "refinery_small_deployed": 4.0,
+    "furnace": 1.2,
+    "furnace.large": 1.8,
+    "refinery_small_deployed": 2.0,
     "campfire": 1.0,
     "skull_fire_pit": 1.0,
     "fireplace.deployed": 1.0,
@@ -38,19 +38,19 @@
       "metal.fragments": 1.0,
       "sulfur": 1.0,
       "metal.refined": 1.0,
-      "charcoal": 10.0
+      "charcoal": 1.5
     },
     "furnace.large":
     {
       "metal.fragments": 1.0,
       "sulfur": 1.0,
       "metal.refined": 1.0,
-      "charcoal": 10.0
+      "charcoal": 1.5
     },
     "refinery_small_deployed":
     {
       "lowgradefuel": 1.0,
-      "charcoal": 10.0
+      "charcoal": 1.5
     },
     "campfire":
     {
@@ -62,7 +62,7 @@
       "humanmeat.cooked": 1.0,
       "meat.pork.cooked": 1.0,
       "wolfmeat.cooked": 1.0,
-      "charcoal": 10.0
+      "charcoal": 1.5
     },
     "skull_fire_pit":
     {
@@ -75,7 +75,7 @@
       "humanmeat.cooked": 1.0,
       "meat.pork.cooked": 1.0,
       "wolfmeat.cooked": 1.0,
-      "charcoal": 10.0
+      "charcoal": 1.5
     },
     "fireplace.deployed":
     {
@@ -88,7 +88,7 @@
       "humanmeat.cooked": 1.0,
       "meat.pork.cooked": 1.0,
       "wolfmeat.cooked": 1.0,
-      "charcoal": 10.0
+      "charcoal": 1.5
     },
     "bbq.deployed":
     {
@@ -101,7 +101,7 @@
       "humanmeat.cooked": 1.0,
       "meat.pork.cooked": 1.0,
       "wolfmeat.cooked": 1.0,
-      "charcoal": 10.0
+      "charcoal": 1.5
     }
   },
   "Whitelist":
