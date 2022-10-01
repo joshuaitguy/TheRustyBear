@@ -2,6 +2,12 @@
   "$schema": "http://json.schema.cloud.utmonline.net/2021/07/RustPluginManifest.json",
   "PluginMetadata": [
     {
+      "Name": "Auto Code",
+      "Page": "https://umod.org/plugins/auto-code",
+      "DownloadUrl": "https://umod.org/plugins/AutoCode.cs",
+      "Enabled": true
+    },
+    {
       "Name": "Vehicle Deployed Locks",
       "Page": "https://umod.org/plugins/vehicle-deployed-locks",
       "DownloadUrl": "https://umod.org/plugins/VehicleDeployedLocks.cs",
