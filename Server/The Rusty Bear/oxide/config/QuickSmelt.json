@@ -4,8 +4,8 @@
   "Speed Multipliers":
   {
     "furnace": 1.2,
-    "furnace.large": 1.8,
-    "refinery_small_deployed": 2.0,
+    "furnace.large": 1.4,
+    "refinery_small_deployed": 1.2,
     "campfire": 1.0,
     "skull_fire_pit": 1.0,
     "fireplace.deployed": 1.0,
@@ -13,9 +13,9 @@
   },
   "Fuel Usage Speed Multipliers":
   {
-    "furnace": 0.4,
-    "furnace.large": 0.4,
-    "refinery_small_deployed": 0.4,
+    "furnace": 1.0,
+    "furnace.large": 1.0,
+    "refinery_small_deployed": 1.0,
     "campfire": 1.0,
     "skull_fire_pit": 1.0,
     "fireplace.deployed": 1.0,
@@ -23,9 +23,9 @@
   },
   "Fuel Usage Multipliers":
   {
-    "furnace": 5,
-    "furnace.large": 5,
-    "refinery_small_deployed": 5,
+    "furnace": 1.5,
+    "furnace.large": 1.5,
+    "refinery_small_deployed": 1.5,
     "campfire": 1,
     "skull_fire_pit": 1,
     "fireplace.deployed": 1,
@@ -38,19 +38,19 @@
       "metal.fragments": 1.0,
       "sulfur": 1.0,
       "metal.refined": 1.0,
-      "charcoal": 1.5
+      "charcoal": 0.5
     },
     "furnace.large":
     {
       "metal.fragments": 1.0,
       "sulfur": 1.0,
       "metal.refined": 1.0,
-      "charcoal": 1.5
+      "charcoal": 0.5
     },
     "refinery_small_deployed":
     {
       "lowgradefuel": 1.0,
-      "charcoal": 1.5
+      "charcoal": 0.5
     },
     "campfire":
     {

@@ -1,7 +1,7 @@
 param(
     [string]$ResourcesPath,
     [string]$ServerPath,
-    [int]$BackoffSeconds = 60
+    [int]$BackoffSeconds = (Get-Random -Minimum 5 -Maximum 60)
 )
 
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
@@ -43,6 +43,7 @@ if($isPsCore)
           Invoke-WebRequest -Uri $_.DownloadUrl -OutFile $OutputFileFullName -ErrorAction Stop
           $WasSuccessful = $true
           Write-Host "Compleated Download of File: $fileName."
+          Start-Sleep -Seconds (Get-Random -Minimum 2 -Maximum 8)
         }
         catch
         {
