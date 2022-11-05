@@ -1,12 +1,6 @@
 name: $(Year:YYYY).$(Month).$(DayOfMonth).$(Rev:rr)
 
-trigger:
-  branches:
-    include:
-      - main
-  paths:
-    include:
-      - Server/*
+trigger: none
 
 parameters:
   - name: InstallRust
