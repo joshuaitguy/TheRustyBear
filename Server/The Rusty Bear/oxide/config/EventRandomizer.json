@@ -5,7 +5,7 @@
   "Block Patrol Helicopters spawned by the server": true,
   "Event Timers in seconds": {
     "Airdrop": {
-      "Max": 3600.0,
+      "Max": 14400.0,
       "Min": 3600.0
     },
     "Cargo": {
@@ -13,12 +13,12 @@
       "Min": 7200.0
     },
     "Chinook": {
-      "Max": 1800.0,
-      "Min": 900.0
+      "Max": 6600.0,
+      "Min": 4800.0
     },
     "Helicopter": {
-      "Max": 1800.0,
-      "Min": 900.0
+      "Max": 5400.0,
+      "Min": 3600.0
     }
   }
 }
