@@ -101,7 +101,7 @@
       "Name": "Better Loot",
       "Page": "https://www.umod.org/plugins/better-loot",
       "DownloadUrl": "https://www.umod.org/plugins/BetterLoot.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "Item Skin Randomizer",
