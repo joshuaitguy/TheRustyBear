@@ -1,38 +1,5 @@
 {
-  "Settings": {
-    "Allowed objects": [
-      "bbq.deployed",
-      "campfire",
-      "ceilinglight.deployed",
-      "fireplace.deployed",
-      "furnace",
-      "furnace.large",
-      "jackolantern.angry",
-      "jackolantern.happy",
-      "lantern.deployed",
-      "refinery_small_deployed",
-      "searchlight.deployed",
-      "skull_fire_pit",
-      "tunalight.deployed",
-      "fogmachine",
-      "snowmachine",
-      "chineselantern.deployed"
-    ],
-    "Don't require fuel": true,
-    "Don't use fuel": true
-  },
-  "Types to autofuel": {
-    "Use Barbeque": true,
-    "Use Campfire": true,
-    "Use Ceiling Light": true,
-    "Use Fireplace": false,
-    "Use Furnace": true,
-    "Use JackOLanterns": true,
-    "Use Lantern": true,
-    "Use Large Furnace": true,
-    "Use Search Light": true,
-    "Use Skull Fire Pit": false,
-    "Use Small Oil Refinery": true,
-    "Use Tuna Can Lamp": true
-  }
+  "Allowed Entities": [],
+  "Check entity owner for permission": false,
+  "Anyone on tool cupboard has permission": true
 }
