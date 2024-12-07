@@ -52,7 +52,7 @@ if($isPsCore)
             Write-Warning "Recived Backoff Requst for File: $fileName. Sleeping download for $Using:BackoffSeconds seconds."
             Start-Sleep -Seconds $Using:BackoffSeconds
           }
-          elseif($_.Exception.Response.StatusCode -eq 404 -or $_.Exception.Response.StatusCode -eq 403)
+          elseif($_.Exception.Response.StatusCode -eq 404 -or $_.Exception.Response.StatusCode -eq 403) # Cloud Flair seems to return a 403 when a file is not found.
           {
             Write-Warning "Response received indicates `"$($fileName)`" was not found on the host."
             $WasSuccessful = $true
