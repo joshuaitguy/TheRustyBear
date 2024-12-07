@@ -52,9 +52,14 @@ if($isPsCore)
             Write-Warning "Recived Backoff Requst for File: $fileName. Sleeping download for $Using:BackoffSeconds seconds."
             Start-Sleep -Seconds $Using:BackoffSeconds
           }
+          elseif($_.Exception.Response.StatusCode -eq 404 -or $_.Exception.Response.StatusCode -eq 403)
+          {
+            Write-Warning "Response received indicates `"$($fileName)`" was not found on the host."
+            $WasSuccessful = $true
+          }
           else
           {
-            Write-Warning "Encountered exception of type: $($_.Exception.GetType().Name) with the following message: $($_.Exception.Message)."
+            Write-Warning "Encountered exception of type: $($_.Exception.GetType().Name) while downloading plug-in `"$($fileName)`" with the following message: $($_.Exception.Message)."
             $WasSuccessful = $true
           }
         }
