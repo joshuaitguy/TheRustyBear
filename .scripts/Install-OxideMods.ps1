@@ -1,7 +1,7 @@
 param(
     [string]$ResourcesPath,
     [string]$ServerPath,
-    [int]$BackoffSeconds = (Get-Random -Minimum 5 -Maximum 60)
+    [int]$BackoffSeconds = (Get-Random -Minimum 20 -Maximum 60)
 )
 
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
