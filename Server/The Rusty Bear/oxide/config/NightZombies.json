@@ -1,0 +1,37 @@
+{
+    "Spawn Settings": {
+      "Spawn near players": true,
+      "Min pop for near player spawn": 10,
+      "Min distance from player": 30.0,
+      "Max distance from player": 60.0,
+      "Spawn Time": 19.8,
+      "Destroy Time": 7.3,
+      "Zombie Settings": {
+        "Scarecrow Population (total amount)": 50,
+        "Scarecrow Health": 200.0,
+        "Scarecrow Kits": []
+      },
+      "Chance Settings": {
+        "Chance per cycle": 80.0,
+        "Days betewen spawn": 7
+      }
+    },
+    "Destroy Settings": {
+      "Leave Corpse, when destroyed (can cause more lag if true)": false,
+      "Leave Corpse, when killed by player": true,
+      "Half body bag despawn time": true,
+      "Quick destroy corpses": true
+    },
+    "Behaviour Settings": {
+      "Attack sleeping players": false,
+      "Zombies attacked by outpost sentries": true,
+      "Ignore Human NPCs": true,
+      "Ignored entities (full entity shortname)": [
+        "scientistjunkpile.prefab",
+        "scarecrow.prefab"
+      ]
+    },
+    "Broadcast Settings": {
+      "Broadcast spawn amount": true
+    }
+  }

@@ -432,6 +432,12 @@
       "Page": "https://umod.org/plugins/nteleportation",
       "DownloadUrl": "https://umod.org/plugins/NTeleportation.cs",
       "Enabled": true
+    },
+    {
+      "Name": "Night Zombies",
+      "Page": "https://umod.org/plugins/night-zombies",
+      "DownloadUrl": "https://umod.org/plugins/NightZombies.cs",
+      "Enabled": true
     }
   ]
 }
