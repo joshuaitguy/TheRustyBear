@@ -1,12 +1,12 @@
 {
-  "displayMonuments": true,
-  "hideSpecificMonuments": [],
-  "displayBuildings": false,
-  "displayMortality": true,
-  "enableLocationSharing": true,
-  "broadcastSpawns": true,
-  "broadcastDeaths": true,
-  "broadcastChat": true,
-  "defaultLanguage": "en",
-  "welcomeMessage": "To locate yourself on the LIVEMAP, browse to <color=#CC3A2D>http://utmo.link/rustmap</color>!"
+    "displayMonuments": true,
+    "hideSpecificMonuments": [],
+    "displayBuildings": false,
+    "displayMortality": true,
+    "enableLocationSharing": true,
+    "broadcastSpawns": true,
+    "broadcastDeaths": true,
+    "broadcastChat": true,
+    "defaultLanguage": "en",
+    "welcomeMessage": "To locate yourself on the LIVEMAP, browse to <color=#CC3A2D>http://utmo.link/rustmap</color>!"
 }
