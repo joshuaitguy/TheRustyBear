@@ -227,7 +227,7 @@
       "Name": "Quick Smelt",
       "Page": "https://umod.org/plugins/quick-smelt",
       "DownloadUrl": "https://umod.org/plugins/QuickSmelt.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "Auto Fuel",
