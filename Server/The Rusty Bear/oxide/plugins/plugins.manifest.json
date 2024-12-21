@@ -438,6 +438,12 @@
       "Page": "https://umod.org/plugins/night-zombies",
       "DownloadUrl": "https://umod.org/plugins/NightZombies.cs",
       "Enabled": true
+    },
+    {
+      "Name": "Weather Events",
+      "Page": "https://umod.org/plugins/weather-events",
+      "DownloadUrl": "https://umod.org/plugins/WeatherEvents.cs",
+      "Enabled": true
     }
   ]
 }
