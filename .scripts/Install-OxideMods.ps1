@@ -67,7 +67,12 @@ if($isPsCore)
     }
     elseif($(Test-Path -Path $OutputFileFullName))
     {
+      Write-Output "Removing File: $fileName."
       Remove-Item -Path $OutputFileFullName
+    }
+    else
+    {
+      Write-Output "File: $fileName is not enabled and does not exist."
     }
   } 
 }
