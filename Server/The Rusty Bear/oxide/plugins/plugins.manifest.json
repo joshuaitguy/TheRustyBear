@@ -317,7 +317,7 @@
       "Name": "Realistic Weather",
       "Page": "https://umod.org/plugins/realistic-weather",
       "DownloadUrl": "https://umod.org/plugins/RealisticWeather.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "Keep Active Item",
