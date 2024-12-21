@@ -12,8 +12,8 @@
         "Scarecrow Kits": []
       },
       "Chance Settings": {
-        "Chance per cycle": 80.0,
-        "Days betewen spawn": 2
+        "Chance per cycle": 100.0,
+        "Days betewen spawn": 0
       }
     },
     "Destroy Settings": {

@@ -35,7 +35,7 @@
       "Name": "Unlimited Elevators",
       "Page": "https://umod.org/plugins/unlimited-elevators",
       "DownloadUrl": "https://umod.org/plugins/UnlimitedElevators.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "Better Chat",
@@ -53,7 +53,7 @@
       "Name": "Crafting Controller",
       "Page": "https://umod.org/plugins/crafting-controller",
       "DownloadUrl": "https://umod.org/plugins/CraftingController.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "Monument Radiation",
@@ -83,13 +83,13 @@
       "Name": "Vanish",
       "Page": "https://umod.org/plugins/vanish",
       "DownloadUrl": "https://umod.org/plugins/Vanish.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "Better Loot",
       "Page": "https://umod.org/plugins/better-loot",
       "DownloadUrl": "https://umod.org/plugins/BetterLoot.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "Item Skin Randomizer",
@@ -257,19 +257,13 @@
       "Name": "Welcomer",
       "Page": "https://umod.org/plugins/welcomer",
       "DownloadUrl": "https://umod.org/plugins/Welcomer.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "Security Lights",
       "Page": "https://umod.org/plugins/security-lights",
       "DownloadUrl": "https://umod.org/plugins/SecurityLights.cs",
-      "Enabled": true
-    },
-    {
-      "Name": "JPipes",
-      "Page": "https://umod.org/plugins/jpipes",
-      "DownloadUrl": "https://umod.org/plugins/JPipes.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "Godmode Indicator",
@@ -332,12 +326,6 @@
       "Enabled": true
     },
     {
-      "Name": "Sync Pipes",
-      "Page": "https://umod.org/plugins/sync-pipes",
-      "DownloadUrl": "https://umod.org/plugins/SyncPipes.cs",
-      "Enabled": true
-    },
-    {
       "Name": "Timed Execute",
       "Page": "https://umod.org/plugins/timed-execute",
       "DownloadUrl": "https://umod.org/plugins/TimedExecute.cs",
@@ -356,27 +344,9 @@
       "Enabled": true
     },
     {
-      "Name": "Pets",
-      "Page": "https://umod.org/plugins/pets",
-      "DownloadUrl": "https://umod.org/plugins/Pets.cs",
-      "Enabled": true
-    },
-    {
       "Name": "Don't Target Me",
       "Page": "https://umod.org/plugins/dont-target-me",
       "DownloadUrl": "https://umod.org/plugins/DontTargetMe.cs",
-      "Enabled": true
-    },
-    {
-      "Name": "Copy Paste",
-      "Page": "https://umod.org/plugins/copy-paste",
-      "DownloadUrl": "https://umod.org/plugins/CopyPaste.cs",
-      "Enabled": true
-    },
-    {
-      "Name": "Raidable Bases",
-      "Page": "https://umod.org/plugins/raidable-bases",
-      "DownloadUrl": "https://umod.org/plugins/RaidableBases.cs",
       "Enabled": true
     },
     {
@@ -386,27 +356,9 @@
       "Enabled": true
     },
     {
-      "Name": "Admin Map",
-      "Page": "https://umod.org/plugins/admin-map",
-      "DownloadUrl": "https://umod.org/plugins/AdminMap.cs",
-      "Enabled": true
-    },
-    {
       "Name": "Skins",
       "Page": "https://umod.org/plugins/skins",
       "DownloadUrl": "https://umod.org/plugins/Skins.cs",
-      "Enabled": true
-    },
-    {
-      "Name": "No Give Notices",
-      "Page": "https://umod.org/plugins/no-give-notices",
-      "DownloadUrl": "https://umod.org/plugins/NoGiveNotices.cs",
-      "Enabled": true
-    },
-    {
-      "Name": "Super Card",
-      "Page": "https://umod.org/plugins/super-card",
-      "DownloadUrl": "https://umod.org/plugins/SuperCard.cs",
       "Enabled": true
     },
     {
