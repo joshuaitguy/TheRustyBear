@@ -2,7 +2,7 @@
   "RevertStackSizesToVanillaOnUnload": false,
   "AllowStackingItemsWithDurability": true,
   "HidePrefixWithPluginNameInMessages": false,
-  "GlobalStackMultiplier": 2.0,
+  "GlobalStackMultiplier": 3.5,
   "CategoryStackMultipliers": {
     "Weapon": 10.0,
     "Construction": 10.0,
