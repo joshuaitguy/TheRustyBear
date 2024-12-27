@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Oxide.Plugins
 {
-    [Info("Auto Doors", "Wulf/lukespragg/Arainrr/James/Bushhy", "3.3.10", ResourceId = 1924)]
+    [Info("Auto Doors", "Wulf/lukespragg/Arainrr/James/Bushhy", "3.3.11", ResourceId = 1924)]
     [Description("Automatically closes doors behind players after X seconds")]
     public class AutoDoors : RustPlugin
     {
