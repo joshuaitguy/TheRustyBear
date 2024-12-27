@@ -32,12 +32,6 @@
       "Enabled": true
     },
     {
-      "Name": "Unlimited Elevators",
-      "Page": "https://umod.org/plugins/unlimited-elevators",
-      "DownloadUrl": "https://umod.org/plugins/UnlimitedElevators.cs",
-      "Enabled": false
-    },
-    {
       "Name": "Better Chat",
       "Page": "https://umod.org/plugins/better-chat",
       "DownloadUrl": "https://umod.org/plugins/BetterChat.cs",
@@ -48,12 +42,6 @@
       "Page": "https://umod.org/plugins/image-library",
       "DownloadUrl": "https://umod.org/plugins/ImageLibrary.cs",
       "Enabled": true
-    },
-    {
-      "Name": "Crafting Controller",
-      "Page": "https://umod.org/plugins/crafting-controller",
-      "DownloadUrl": "https://umod.org/plugins/CraftingController.cs",
-      "Enabled": false
     },
     {
       "Name": "Monument Radiation",
@@ -78,18 +66,6 @@
       "Page": "https://umod.org/plugins/zone-manager",
       "DownloadUrl": "https://umod.org/plugins/ZoneManager.cs",
       "Enabled": true
-    },
-    {
-      "Name": "Vanish",
-      "Page": "https://umod.org/plugins/vanish",
-      "DownloadUrl": "https://umod.org/plugins/Vanish.cs",
-      "Enabled": false
-    },
-    {
-      "Name": "Better Loot",
-      "Page": "https://umod.org/plugins/better-loot",
-      "DownloadUrl": "https://umod.org/plugins/BetterLoot.cs",
-      "Enabled": false
     },
     {
       "Name": "Item Skin Randomizer",
@@ -224,12 +200,6 @@
       "Enabled": true
     },
     {
-      "Name": "Quick Smelt",
-      "Page": "https://umod.org/plugins/quick-smelt",
-      "DownloadUrl": "https://umod.org/plugins/QuickSmelt.cs",
-      "Enabled": false
-    },
-    {
       "Name": "Auto Fuel",
       "Page": "https://umod.org/plugins/auto-fuel",
       "DownloadUrl": "https://umod.org/plugins/AutoFuel.cs",
@@ -254,22 +224,10 @@
       "Enabled": true
     },
     {
-      "Name": "Welcomer",
-      "Page": "https://umod.org/plugins/welcomer",
-      "DownloadUrl": "https://umod.org/plugins/Welcomer.cs",
-      "Enabled": false
-    },
-    {
       "Name": "Security Lights",
       "Page": "https://umod.org/plugins/security-lights",
       "DownloadUrl": "https://umod.org/plugins/SecurityLights.cs",
       "Enabled": true
-    },
-    {
-      "Name": "JPipes",
-      "Page": "https://umod.org/plugins/jpipes",
-      "DownloadUrl": "https://umod.org/plugins/JPipes.cs",
-      "Enabled": false
     },
     {
       "Name": "Godmode Indicator",
@@ -314,12 +272,6 @@
       "Enabled": true
     },
     {
-      "Name": "Realistic Weather",
-      "Page": "https://umod.org/plugins/realistic-weather",
-      "DownloadUrl": "https://umod.org/plugins/RealisticWeather.cs",
-      "Enabled": false
-    },
-    {
       "Name": "Keep Active Item",
       "Page": "https://umod.org/plugins/keep-active-item",
       "DownloadUrl": "https://umod.org/plugins/KeepActiveItem.cs",
@@ -330,12 +282,6 @@
       "Page": "https://umod.org/plugins/entity-owner",
       "DownloadUrl": "https://umod.org/plugins/EntityOwner.cs",
       "Enabled": true
-    },
-    {
-      "Name": "Sync Pipes",
-      "Page": "https://umod.org/plugins/sync-pipes",
-      "DownloadUrl": "https://umod.org/plugins/SyncPipes.cs",
-      "Enabled": false
     },
     {
       "Name": "Timed Execute",
@@ -356,28 +302,10 @@
       "Enabled": true
     },
     {
-      "Name": "Pets",
-      "Page": "https://umod.org/plugins/pets",
-      "DownloadUrl": "https://umod.org/plugins/Pets.cs",
-      "Enabled": false
-    },
-    {
       "Name": "Don't Target Me",
       "Page": "https://umod.org/plugins/dont-target-me",
       "DownloadUrl": "https://umod.org/plugins/DontTargetMe.cs",
       "Enabled": true
-    },
-    {
-      "Name": "Copy Paste",
-      "Page": "https://umod.org/plugins/copy-paste",
-      "DownloadUrl": "https://umod.org/plugins/CopyPaste.cs",
-      "Enabled": false
-    },
-    {
-      "Name": "Raidable Bases",
-      "Page": "https://umod.org/plugins/raidable-bases",
-      "DownloadUrl": "https://umod.org/plugins/RaidableBases.cs",
-      "Enabled": false
     },
     {
       "Name": "Player Location",
@@ -386,34 +314,10 @@
       "Enabled": true
     },
     {
-      "Name": "Admin Map",
-      "Page": "https://umod.org/plugins/admin-map",
-      "DownloadUrl": "https://umod.org/plugins/AdminMap.cs",
-      "Enabled": false
-    },
-    {
       "Name": "Skins",
       "Page": "https://umod.org/plugins/skins",
       "DownloadUrl": "https://umod.org/plugins/Skins.cs",
       "Enabled": true
-    },
-    {
-      "Name": "No Give Notices",
-      "Page": "https://umod.org/plugins/no-give-notices",
-      "DownloadUrl": "https://umod.org/plugins/NoGiveNotices.cs",
-      "Enabled": false
-    },
-    {
-      "Name": "Super Card",
-      "Page": "https://umod.org/plugins/super-card",
-      "DownloadUrl": "https://umod.org/plugins/SuperCard.cs",
-      "Enabled": false
-    },
-    {
-      "Name": "Clothed Murderers",
-      "Page": "https://umod.org/plugins/clothed-murderers",
-      "DownloadUrl": "https://umod.org/plugins/ClothedMurderers.cs",
-      "Enabled": false
     },
     {
       "Name": "ZLevels Remastered",
