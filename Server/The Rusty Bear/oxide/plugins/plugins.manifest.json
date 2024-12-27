@@ -263,7 +263,7 @@
       "Name": "Security Lights",
       "Page": "https://umod.org/plugins/security-lights",
       "DownloadUrl": "https://umod.org/plugins/SecurityLights.cs",
-      "Enabled": false
+      "Enabled": true
     },
     {
       "Name": "JPipes",
