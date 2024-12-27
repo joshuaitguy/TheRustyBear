@@ -292,7 +292,7 @@
     {
       "Name": "Lusty Map",
       "Page": "https://umod.org/plugins/lusty-map",
-      "DownloadUrl": "https://umod.org/plugins/LustyMap.cs",
+      "DownloadUrl": "https://rustmanualpatches.blob.core.windows.net/mods/LustyMap.cs",
       "Enabled": true
     },
     {
@@ -413,7 +413,7 @@
       "Name": "Clothed Murderers",
       "Page": "https://umod.org/plugins/clothed-murderers",
       "DownloadUrl": "https://umod.org/plugins/ClothedMurderers.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "ZLevels Remastered",
