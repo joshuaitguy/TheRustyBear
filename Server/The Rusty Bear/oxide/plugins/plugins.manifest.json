@@ -251,7 +251,7 @@
       "Name": "Lusty Map",
       "Page": "https://umod.org/plugins/lusty-map",
       "DownloadUrl": "https://rustmanualpatches.blob.core.windows.net/mods/LustyMap.cs",
-      "Enabled": true
+      "Enabled": false
     },
     {
       "Name": "Enhanced Hammer",
