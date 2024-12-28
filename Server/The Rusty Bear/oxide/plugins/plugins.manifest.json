@@ -342,6 +342,12 @@
       "Page": "https://umod.org/plugins/weather-events",
       "DownloadUrl": "https://umod.org/plugins/WeatherEvents.cs",
       "Enabled": true
+    },
+    {
+      "Name": "No Give Notices",
+      "Page": "https://umod.org/plugins/no-give-notices",
+      "DownloadUrl": "https://umod.org/plugins/NoGiveNotices.cs",
+      "Enabled": true
     }
   ]
 }
