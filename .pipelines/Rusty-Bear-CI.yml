@@ -25,7 +25,7 @@ stages:
   displayName: 'Snapshot Config & Deploy Latest Server Bits (Optional)'
   jobs:
     - job: CCS
-      pool: OnPremBuildAgents
+      pool: PHX-Games
       displayName: Capture Config Snapshot
       steps:
         - task: PublishBuildArtifacts@1
