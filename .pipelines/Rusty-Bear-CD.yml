@@ -47,10 +47,9 @@ resources:
       type: git
       name: OneBuild/OneBuild.Pipelines
       ref: refs/tags/0.stable
-      endpoint: UTMO
   pipelines:
     - pipeline: latest
-      source: TheRustyBear
+      source: The Rusty Bear - Config Snapshot
       trigger:
         branches:
           include:
