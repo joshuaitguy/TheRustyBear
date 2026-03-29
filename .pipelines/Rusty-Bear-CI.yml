@@ -14,7 +14,7 @@ trigger:
       - Server/*
 
 pool:
-  name: 'PHX-Games'
+  name: 'PHX2-Games'
 
 variables:
   ScriptsBasePath: '$(System.DefaultWorkingDirectory)/.scripts'
