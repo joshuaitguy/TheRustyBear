@@ -58,7 +58,7 @@ resources:
 variables:
   dt: Pipelines/BaseInfra/Stages.Base.Template.yml@Templates
 
-pool: PHX-Games
+pool: PHX2-Games
 
 stages:
   - ${{ if or(eq(parameters.InstallRust, true),eq(parameters.DeployConfig, true))}}:
